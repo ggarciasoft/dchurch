@@ -1,0 +1,10 @@
+<div class="field">
+	<span class="labelfield">Descripcion:</span>
+	<%= @ministry.Description%>
+</div>
+<div class="field">
+	<span class="labelfield">Activo:</span>
+	<%=check_box_tag "chkActive",nil, @ministry.Active, disabled: true%>
+</div>
+
+<%=link_to "Lista Ministerios", ministries_path%>

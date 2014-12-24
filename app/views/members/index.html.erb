@@ -1,0 +1,43 @@
+<h1>Lista de Miembros</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Fecha de Nacimiento</th>
+      <th>Fecha de Conversión</th>
+      <th>Dirección</th>
+      <th>Teléfono</th>
+      <th>Celular</th>
+      <th>Fecha de Bautizo</th>
+      <th>Activo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @members.each do |member| %>
+      <tr>
+        <td><%= member.Id %></td>
+        <td><%= member.FirstName %></td>
+        <td><%= member.LastName %></td>
+        <td><%= member.BirthDate %></td>
+        <td><%= member.ConvertionDate %></td>
+        <td><%= member.Address %></td>
+        <td><%= member.HomePhone %></td>
+        <td><%= member.CellPhone %></td>
+        <td><%= member.BaptismDate %></td>
+        <td><%= member.Active %></td>
+        <td><%= link_to 'Ver', member %></td>
+        <td><%= link_to 'Editar', edit_member_path(member) %></td>
+        <td><%= link_to 'Eliminar', member, method: :delete, data: { confirm: 'Esta Seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo Miembro', new_member_path %>

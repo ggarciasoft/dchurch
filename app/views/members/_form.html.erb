@@ -1,0 +1,81 @@
+<%= form_for(@member) do |f| %>
+    <% countDetail = 0 %>
+    <% if @member.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
+
+          <ul>
+            <% @member.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      Nombre<br>
+      <%= f.text_field :FirstName %>
+    </div>
+    <div class="field">
+      Apellido<br>
+      <%= f.text_field :LastName %>
+    </div>
+    <div class="field">
+      Fecha de Nacimiento<br>
+      <%= f.date_field :BirthDate %>
+    </div>
+    <div class="field">
+      Fecha de Conversión<br>
+      <%= f.date_field :ConvertionDate %>
+    </div>
+    <div class="field">
+      Dirección<br>
+      <%= f.text_area :Address %>
+    </div>
+    <div class="field">
+      Telefono de Casa<br>
+      <%= f.telephone_field :HomePhone %>
+    </div>
+    <div class="field">
+      Celular<br>
+      <%= f.telephone_field :CellPhone %>
+    </div>
+    <div class="field">
+      Fecha de Bautizo<br>
+      <%= f.date_field :BaptismDate %>
+    </div>
+    <div class="field">
+      Activo<br>
+      <%= f.check_box :Active %>
+    </div>
+
+    <div id="divMinisters">
+      <%= hidden_field_tag "hdnMinistries", @ministries.to_json %>
+      <%= hidden_field_tag "hdnPositions", @positions.to_json %>
+      <h1>Ministerios</h1>
+
+      <input type="button" id="btnAddMinisty" onclick="addMinistry(); return false;" value="Añadir Ministerio"/>
+      <table id="tblMinistries">
+        <thead>
+        <tr>
+          <th>Ministerio</th>
+          <th>Cargo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%= f.fields_for :memberministrypositions do |detail| %>
+            <tr data-index="<%= countDetail %>">
+              <td><%= detail.select :ministry_id, @ministries %></td>
+              <td><%= detail.select :position_id, @positions %></td>
+              <td><input type="button" value="Eliminar" onclick="deleteMinistry(this); return false;"></td>
+              <% countDetail = countDetail + 1 %>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

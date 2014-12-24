@@ -1,0 +1,77 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @member.Id %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @member.FirstName %>
+</p>
+
+<p>
+  <strong>Apellido:</strong>
+  <%= @member.LastName %>
+</p>
+
+<p>
+  <strong>Fecha de Nacimiento:</strong>
+  <%= @member.BirthDate %>
+</p>
+
+<p>
+  <strong>Fecha de Conversión:</strong>
+  <%= @member.ConvertionDate %>
+</p>
+
+<p>
+  <strong>Dirección:</strong>
+  <%= @member.Address %>
+</p>
+
+<p>
+  <strong>Teléfono:</strong>
+  <%= @member.HomePhone %>
+</p>
+
+<p>
+  <strong>Celular:</strong>
+  <%= @member.CellPhone %>
+</p>
+
+<p>
+  <strong>Fecha de Bautizo:</strong>
+  <%= @member.BaptismDate %>
+</p>
+
+<p>
+  <strong>Activo:</strong>
+  <%= @member.Active %>
+</p>
+
+
+<div id="divMinisters">
+  <h1>Ministerios</h1>
+
+  <table id="tblMinistries">
+    <thead>
+    <tr>
+      <th>Ministerio</th>
+      <th>Cargo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @member.memberministrypositions.each do |d| %>
+        <tr>
+          <td><%= d.ministry.Description %></td>
+          <td><%= d.position.Description %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<%= link_to 'Editar', edit_member_path(@member) %> |
+<%= link_to 'Atras', members_path %>

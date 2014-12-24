@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Rails dchurch: development" uuid="5e122fff-6906-4e3d-82fd-0fcabdb906f4">
+    <database-info product="MySQL" version="5.5.5-10.0.14-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="dchurch"/>
+    <table name="memberministrypositions" schema="" catalog="dchurch" type="TABLE">
+      <column name="Id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="member_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ministry_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="position_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="Id"/>
+      <foreign-key name="FK__members" columns="member_id" ref-table="members" ref-schema="" ref-catalog="dchurch" ref-columns="Id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK__ministries" columns="ministry_id" ref-table="ministries" ref-schema="" ref-catalog="dchurch" ref-columns="Id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK__positions" columns="position_id" ref-table="positions" ref-schema="" ref-catalog="dchurch" ref-columns="Id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK__ministries" unique="false" columns="ministry_id"/>
+      <index name="FK__positions" unique="false" columns="position_id"/>
+      <index name="member_id_ministry_id_position_id" unique="false" columns="member_id,ministry_id,position_id"/>
+    </table>
+    <table name="members" schema="" catalog="dchurch" type="TABLE">
+      <column name="Id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="FirstName" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LastName" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="BirthDate" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="ConvertionDate" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="Address" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="HomePhone" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CellPhone" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BaptismDate" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="Active" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MQ=="/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="Id"/>
+      <exported-key name="FK__members" table="memberministrypositions" schema="" catalog="dchurch" columns="member_id"/>
+    </table>
+    <table name="ministries" schema="" catalog="dchurch" type="TABLE">
+      <column name="Id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Description" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Active" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MQ=="/>
+      <column name="created_at" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="updated_at" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="Id"/>
+      <exported-key name="FK__ministries" table="memberministrypositions" schema="" catalog="dchurch" columns="ministry_id"/>
+    </table>
+    <table name="positions" schema="" catalog="dchurch" type="TABLE">
+      <column name="Id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Description" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Active" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MQ=="/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="Id"/>
+      <exported-key name="FK__positions" table="memberministrypositions" schema="" catalog="dchurch" columns="position_id"/>
+    </table>
+  </data-source>
+  <data-source name="Rails dchurch: test" uuid="51f07b8e-ffa9-4907-a7c0-7326f93caf30">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails dchurch: production" uuid="4721428a-7862-4e3a-b192-9b55da1b45c0">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

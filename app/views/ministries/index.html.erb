@@ -1,0 +1,22 @@
+
+<%=link_to "Create New", new_ministry_path()%>
+<table>
+	<thead>
+		<tr>
+			<td>Id</td>
+			<td>Description</td>
+			<td>Action</td>
+		</tr>
+	</thead>
+	<tbody>
+		<% @ministries.each do |ministry|%>
+		<tr>
+			<td><%=ministry.id%></td>
+			<td><%=ministry.Description%></td>
+			<td><%=link_to "Ver", ministry_path(ministry) %></td>
+			<td><%=link_to "Editar", edit_ministry_path(ministry) %></td>
+			<td><%=link_to "Eliminar", ministry_path(ministry), method: :delete, data: { confirm: "Esta seguro?" } %></td>
+		</tr>
+		<%end%>
+	</tbody>
+</table>
