@@ -8,9 +8,10 @@ class Member < ActiveRecord::Base
 	validates :CellPhone, length: { maximum: 10 }
 
 	after_validation(on: :update) do
-		# member = Member.find(id)
-		# member.memberministrypositions.each do |x|
-		# 	x.destroy
-		# end
+		member = Member.find(id)
+		member.memberministrypositions.each { |o|
+			x = Memberministryposition.find(o.Id)
+			x.destroy
+		}
 	end
 end
