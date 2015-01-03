@@ -54,12 +54,16 @@
       <%= hidden_field_tag "hdnPositions", @positions.to_json %>
       <h1>Ministerios</h1>
 
-      <input type="button" id="btnAddMinisty" onclick="addMinistry(); return false;" value="Añadir Ministerio"/>
-      <table id="tblMinistries">
+      <button id="btnAddMinisty"
+              class="btn btn-primary" onclick="addMinistry(); return false;">
+        Añadir Ministerio <span class="glyphicon glyphicon-plus-sign"></span></button>
+
+      <table id="tblMinistries" class="table table-striped table-bordered">
         <thead>
         <tr>
           <th>Ministerio</th>
           <th>Cargo</th>
+          <th>Acción</th>
         </tr>
         </thead>
         <tbody>
@@ -67,7 +71,10 @@
             <tr data-index="<%= countDetail %>">
               <td><%= detail.select :ministry_id, @ministries %></td>
               <td><%= detail.select :position_id, @positions %></td>
-              <td><input type="button" value="Eliminar" onclick="deleteMinistry(this); return false;"></td>
+              <td>
+                <button class="btn btn-danger" onclick="deleteMinistry(this); return false;">Eliminar
+                  <span class="glyphicon glyphicon-remove-sign"></span></button>
+              </td>
               <% countDetail = countDetail + 1 %>
             </tr>
         <% end %>
@@ -76,6 +83,7 @@
     </div>
 
     <div class="actions">
-      <%= f.submit %>
+      <button class="btn btn-success">Guardar
+        <span class="glyphicon glyphicon-floppy-disk"></span></button>
     </div>
 <% end %>

@@ -47,14 +47,14 @@
 
 <p>
   <strong>Activo:</strong>
-  <%= @member.Active %>
+  <%= check_box_tag "chkActive", nil, @member.Active, disabled: true %>
 </p>
 
 
 <div id="divMinisters">
   <h1>Ministerios</h1>
 
-  <table id="tblMinistries">
+  <table id="tblMinistries" class="table table-striped table-bordered">
     <thead>
     <tr>
       <th>Ministerio</th>
@@ -73,5 +73,10 @@
 </div>
 
 
-<%= link_to 'Editar', edit_member_path(@member) %> |
-<%= link_to 'Atras', members_path %>
+<%= link_to edit_member_path(@member) do %>
+    <button class="btn btn-success">Editar <span class="glyphicon glyphicon-pencil"></span></button>
+<% end %> |
+<%= link_to members_path do %>
+    <button class="btn btn-default">Lista <span class="glyphicon glyphicon-list"></span></button>
+<% end %>
+

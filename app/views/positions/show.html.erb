@@ -6,14 +6,17 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Descriptión:</strong>
   <%= @position.Description %>
 </p>
 
 <p>
   <strong>Active:</strong>
-  <%= @position.Active %>
+  <%= check_box_tag "chkActive", nil, @position.Active, disabled: true %>
 </p>
-
-<%= link_to 'Edit', edit_position_path(@position) %> |
-<%= link_to 'Back', positions_path %>
+<%= link_to edit_position_path(@position) do %>
+    <button class="btn btn-success">Editar <span class="glyphicon glyphicon-pencil"></span></button>
+<% end %> |
+<%= link_to positions_path do %>
+    <button class="btn btn-default">Lista <span class="glyphicon glyphicon-list"></span></button>
+<% end %>

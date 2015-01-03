@@ -7,4 +7,9 @@
 	<%=check_box_tag "chkActive",nil, @ministry.Active, disabled: true%>
 </div>
 
-<%=link_to "Lista Ministerios", ministries_path%>
+<%= link_to edit_ministry_path(@ministry) do %>
+    <button class="btn btn-success">Editar <span class="glyphicon glyphicon-pencil"></span></button>
+<% end %> |
+<%= link_to ministries_path do %>
+    <button class="btn btn-default">Lista <span class="glyphicon glyphicon-list"></span></button>
+<% end %>

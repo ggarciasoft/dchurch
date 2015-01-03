@@ -2,13 +2,28 @@
 <html>
 <head>
   <title>Dchurch</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'members', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">DCHURCH</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li class="<%= "active" if controller.controller_name == "members" %>"><a href="/members">Miembros</a></li>
+        <li class="<%= "active" if controller.controller_name == "ministries" %>"><a href="/ministries">Ministerios</a>
+        </li>
+        <li class="<%= "active" if controller.controller_name == "positions" %>"><a href="/positions">Cargos</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <%= yield %>
+</div>
 </body>
 </html>

@@ -2,5 +2,9 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @position %> |
-<%= link_to 'Back', positions_path %>
+<%= link_to @position do %>
+    <button class="btn btn-success">Ver <span class="glyphicon glyphicon-eye-open"></span></button>
+<% end %> |
+<%= link_to positions_path do %>
+    <button class="btn btn-default">Lista <span class="glyphicon glyphicon-list"></span></button>
+<% end %>

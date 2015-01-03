@@ -1,22 +1,37 @@
+<h1>Lista de Ministerios</h1>
+<%= link_to new_ministry_path do %>
+    <button class="btn btn-primary">Nuevo <span class="glyphicon glyphicon-plus-sign"></span></button>
+<% end %>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Descripción</th>
+      <th>Activo</td>
+      <th colspan="3">Acción</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @ministries.each do |ministry| %>
+        <tr>
+          <td><%= ministry.id %></td>
+          <td><%= ministry.Description %></td>
+          <td><%= check_box_tag "chkActive", nil, ministry.Active, disabled: true %></td>
 
-<%=link_to "Create New", new_ministry_path()%>
-<table>
-	<thead>
-		<tr>
-			<td>Id</td>
-			<td>Description</td>
-			<td>Action</td>
-		</tr>
-	</thead>
-	<tbody>
-		<% @ministries.each do |ministry|%>
-		<tr>
-			<td><%=ministry.id%></td>
-			<td><%=ministry.Description%></td>
-			<td><%=link_to "Ver", ministry_path(ministry) %></td>
-			<td><%=link_to "Editar", edit_ministry_path(ministry) %></td>
-			<td><%=link_to "Eliminar", ministry_path(ministry), method: :delete, data: { confirm: "Esta seguro?" } %></td>
-		</tr>
-		<%end%>
-	</tbody>
-</table>
+          <td><%= link_to ministry do %>
+                <button class="btn btn-info">Ver <span class="glyphicon glyphicon-eye-open"></span></button>
+            <% end %></td>
+          <td><%= link_to edit_ministry_path(ministry) do %>
+                <button class="btn btn-success">Editar <span class="glyphicon glyphicon-pencil"></span></button>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to ministry, method: :delete, data: {confirm: 'Esta Seguro?'} do %>
+                <button class="btn btn-danger">Eliminar <span class="glyphicon glyphicon-remove-sign"></span></button>
+            <% end %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

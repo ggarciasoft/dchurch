@@ -2,5 +2,10 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Mostrar', @member %> |
-<%= link_to 'Atras', members_path %>
+<%= link_to @member do %>
+    <button class="btn btn-success">Ver <span class="glyphicon glyphicon-eye-open"></span></button>
+<% end %> |
+<%= link_to members_path do %>
+    <button class="btn btn-default">Lista <span class="glyphicon glyphicon-list"></span></button>
+<% end %>
+

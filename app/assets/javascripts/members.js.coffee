@@ -28,10 +28,10 @@ createDropDown = (name, lst) ->
       rowId),
     JSON.parse(document.getElementById("hdnPositions").value)))
 
-  btn = document.createElement("INPUT")
-  btn.setAttribute("type", "button")
-  btn.value = "Eliminar"
+  btn = document.createElement("BUTTON")
+  btn.className =  "btn btn-danger"
   btn.onclick = () -> deleteMinistry(this)
+  btn.innerHTML = 'Eliminar <span class="glyphicon glyphicon-remove-sign"></span>'
   column3.appendChild(btn)
   false
 
