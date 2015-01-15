@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Id: 
+  MovementDate: 
+  movementtype_id: 
+  entitytype_id: 
+  EntityReference: 
+  asset_id: 
+  AssetQuantity: 
+
+two:
+  Id: 
+  MovementDate: 
+  movementtype_id: 
+  entitytype_id: 
+  EntityReference: 
+  asset_id: 
+  AssetQuantity: 
