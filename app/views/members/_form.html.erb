@@ -11,6 +11,7 @@
           </ul>
         </div>
     <% end %>
+    <p id="notice"><%= notice %></p>
 
     <div class="field">
       Nombre<br>
@@ -81,9 +82,5 @@
         </tbody>
       </table>
     </div>
-
-    <div class="actions">
-      <button class="btn btn-success">Guardar
-        <span class="glyphicon glyphicon-floppy-disk"></span></button>
-    </div>
+    <%= render "layouts/formactions", path_to_list: members_path %>
 <% end %>

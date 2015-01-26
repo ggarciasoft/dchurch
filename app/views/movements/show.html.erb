@@ -6,34 +6,42 @@
 </p>
 
 <p>
-  <strong>Movementdate:</strong>
+  <strong>Fecha de Movimiento:</strong>
   <%= @movement.MovementDate %>
 </p>
 
 <p>
-  <strong>Movementtype:</strong>
-  <%= @movement.movementtype_id %>
+  <strong>Tipo de Movimiento:</strong>
+  <%= @movement.movementtype.Description%>
 </p>
 
 <p>
-  <strong>Entitytype:</strong>
-  <%= @movement.entitytype_id %>
+  <strong>Tipo de Entidad:</strong>
+  <%= @movement.entitytype.Description %>
 </p>
 
 <p>
-  <strong>Entityreference:</strong>
+  <strong>Entidad:</strong>
   <%= @movement.EntityReference %>
 </p>
 
 <p>
-  <strong>Asset:</strong>
-  <%= @movement.asset_id %>
+  <strong>Tipo de Activo:</strong>
+  <%= @movement.asset.Description %>
 </p>
 
 <p>
-  <strong>Assetquantity:</strong>
+  <strong>Cantidad:</strong>
   <%= @movement.AssetQuantity %>
 </p>
 
-<%= link_to 'Edit', edit_movement_path(@movement) %> |
-<%= link_to 'Back', movements_path %>
+<p>
+  <strong>Comentario:</strong>
+  <%= @movement.Comments %>
+</p>
+<%= link_to edit_movement_path(@movement) do %>
+    <button class="btn btn-success">Editar <span class="glyphicon glyphicon-pencil"></span></button>
+<% end %> |
+<%= link_to movements_path do %>
+    <button class="btn btn-default">Lista <span class="glyphicon glyphicon-list"></span></button>
+<% end %>

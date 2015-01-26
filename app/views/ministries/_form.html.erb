@@ -1,23 +1,25 @@
-<%=form_for (@ministry) { |f| %>
-<%if @ministry.errors.any?%>
-<div id="error_explanation">
-	<ul>
-		<%@ministry.errors.full_messages.each do |e| %>
-		<li><%=e%></li>
-		<%end%>
-	</ul>
-</div>
-<%end%>
-<div class="field">
-	<span class="labelfield">Descripcion:</span>
-	<%=f.text_field :Description%>
-</div>
-<div class="field">
-	<span class="labelfield">Activo:</span>
-	<%=f.check_box :Active%>
-</div>
-<div class="actions">
-  <button class="btn btn-success">Guardar
-    <span class="glyphicon glyphicon-floppy-disk"></span></button>
-</div>
-<%}%>
+<%= form_for (@ministry) { |f| %>
+    <% if @ministry.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@ministry.errors.count, "error") %> prohibited this movement from being saved:</h2>
+
+          <ul>
+            <% @ministry.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <p id="notice"><%= notice %></p>
+
+    <div class="field">
+      <span class="labelfield">Descripcion:</span>
+      <%= f.text_field :Description %>
+    </div>
+    <div class="field">
+      <span class="labelfield">Activo:</span>
+      <%= f.check_box :Active %>
+    </div>
+    <%= render "layouts/formactions", path_to_list: ministries_path %>
+
+<% } %>

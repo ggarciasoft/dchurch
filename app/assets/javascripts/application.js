@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+
+function saveAndNewClick(){
+    document.getElementById("hdnAdditionalAction").value = "saveandnew";
+}

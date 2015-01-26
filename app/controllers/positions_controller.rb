@@ -14,7 +14,11 @@ class PositionsController < ApplicationController
 
   # GET /positions/new
   def new
-    @position = Position.new
+    if params[:id] == nil
+      @position = Position.new
+    else
+      set_position
+    end
   end
 
   # GET /positions/1/edit
@@ -28,11 +32,13 @@ class PositionsController < ApplicationController
 
     respond_to do |format|
       if @position.save
-        format.html { redirect_to @position, notice: 'Position was successfully created.' }
-        format.json { render :show, status: :created, location: @position }
+        if params[:additionalAction] == "saveandnew"
+          format.html { redirect_to ({action: "new", id: @position.id}), notice: 'Position was successfully created.' }
+        else
+          format.html { redirect_to @position, notice: 'Position was successfully created.' }
+        end
       else
         format.html { render :new }
-        format.json { render json: @position.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -62,13 +68,13 @@ class PositionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_position
-      @position = Position.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_position
+    @position = Position.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def position_params
-      params.require(:position).permit(:Id, :Description, :Active)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def position_params
+    params.require(:position).permit(:Id, :Description, :Active)
+  end
 end

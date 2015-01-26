@@ -1,0 +1,13 @@
+<div class="actions">
+  <%= hidden_field_tag "additionalAction", "save", id: "hdnAdditionalAction" %>
+  <button class="btn btn-success">Guardar
+    <span class="glyphicon glyphicon-floppy-disk"></span></button>
+  |
+  <button class="btn btn-success" onclick="saveAndNewClick();">Guardar y Nuevo
+    <span class="glyphicon glyphicon-floppy-disk"></span> <span class="glyphicon glyphicon-plus-sign"></span></button>
+  |
+  <%= link_to path_to_list do %>
+      <button class="btn btn-default">Lista <span class="glyphicon glyphicon-list"></span></button>
+  <% end %>
+
+</div>

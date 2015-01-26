@@ -1,45 +1,44 @@
 <%= form_for(@movement) do |f| %>
-  <% if @movement.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@movement.errors.count, "error") %> prohibited this movement from being saved:</h2>
+    <% if @movement.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@movement.errors.count, "error") %> prohibited this movement from being saved:</h2>
 
-      <ul>
-      <% @movement.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @movement.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <p id="notice"><%= notice %></p>
+
+    <div class="field">
+      Fecha de Movimiento<br>
+      <%= f.date_field :MovementDate %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :Id %><br>
-    <%= f.text_field :Id %>
-  </div>
-  <div class="field">
-    <%= f.label :MovementDate %><br>
-    <%= f.text_field :MovementDate %>
-  </div>
-  <div class="field">
-    <%= f.label :movementtype_id %><br>
-    <%= f.text_field :movementtype_id %>
-  </div>
-  <div class="field">
-    <%= f.label :entitytype_id %><br>
-    <%= f.text_field :entitytype_id %>
-  </div>
-  <div class="field">
-    <%= f.label :EntityReference %><br>
-    <%= f.text_field :EntityReference %>
-  </div>
-  <div class="field">
-    <%= f.label :asset_id %><br>
-    <%= f.text_field :asset_id %>
-  </div>
-  <div class="field">
-    <%= f.label :AssetQuantity %><br>
-    <%= f.text_field :AssetQuantity %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+      Tipo de Movimiento<br>
+      <%= f.select :movementtype_id, @movementTypes %>
+    </div>
+    <div class="field">
+      Tipo de Entidad<br>
+      <%= f.select :entitytype_id, @entityTypes %>
+    </div>
+    <div class="field">
+      Entidad<br>
+      <%= f.text_field :EntityReference %>
+    </div>
+    <div class="field">
+      Tipo de Activo<br>
+      <%= f.select :asset_id, @assets %>
+    </div>
+    <div class="field">
+      Cantidad<br>
+      <%= f.text_field :AssetQuantity %>
+    </div>
+    <div class="field">
+      Comentario<br>
+      <%= f.text_area :Comments %>
+    </div>
+    <%= render "layouts/formactions", path_to_list: movements_path %>
 <% end %>

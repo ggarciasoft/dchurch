@@ -1,5 +1,6 @@
 class MovementsController < ApplicationController
   before_action :set_movement, only: [:show, :edit, :update, :destroy]
+  before_action :set_dropdown_data, only: [:show, :new, :edit]
 
   # GET /movements
   # GET /movements.json
@@ -28,8 +29,11 @@ class MovementsController < ApplicationController
 
     respond_to do |format|
       if @movement.save
-        format.html { redirect_to @movement, notice: 'Movement was successfully created.' }
-        format.json { render :show, status: :created, location: @movement }
+        if params[:additionalAction] == "saveandnew"
+          format.html { render :new, notice: 'Movement was successfully created.' }
+        else
+          format.html { redirect_to @movement, notice: 'Movement was successfully created.' }
+        end
       else
         format.html { render :new }
         format.json { render json: @movement.errors, status: :unprocessable_entity }
@@ -43,10 +47,9 @@ class MovementsController < ApplicationController
     respond_to do |format|
       if @movement.update(movement_params)
         format.html { redirect_to @movement, notice: 'Movement was successfully updated.' }
-        format.json { render :show, status: :ok, location: @movement }
       else
+        set_dropdown_data
         format.html { render :edit }
-        format.json { render json: @movement.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -62,13 +65,19 @@ class MovementsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_movement
-      @movement = Movement.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_movement
+    @movement = Movement.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def movement_params
-      params.require(:movement).permit(:Id, :MovementDate, :movementtype_id, :entitytype_id, :EntityReference, :asset_id, :AssetQuantity)
-    end
+  def set_dropdown_data
+    @assets = Asset.all.collect { |m| [m.Description, m.Id] }
+    @entityTypes = Entitytype.all.collect { |m| [m.Description, m.Id] }
+    @movementTypes = Movementtype.all.collect { |m| [m.Description, m.Id] }
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def movement_params
+    params.require(:movement).permit(:Id, :MovementDate, :movementtype_id, :entitytype_id, :EntityReference, :asset_id, :AssetQuantity)
+  end
 end

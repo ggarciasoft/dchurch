@@ -1,30 +1,24 @@
 <%= form_for(@position) do |f| %>
-  <% if @position.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@position.errors.count, "error") %> prohibited this position from being saved:</h2>
+    <% if @position.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@position.errors.count, "error") %> prohibited this position from being saved:</h2>
 
-      <ul>
-      <% @position.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @position.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <p id="notice"><%= notice %></p>
+
+    <div class="field">
+      <%= f.label :Description %><br>
+      <%= f.text_field :Description %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :Id %><br>
-    <%= f.number_field :Id %>
-  </div>
-  <div class="field">
-    <%= f.label :Description %><br>
-    <%= f.text_field :Description %>
-  </div>
-  <div class="field">
-    <%= f.label :Active %><br>
-    <%= f.check_box :Active %>
-  </div>
-  <div class="actions">
-    <button class="btn btn-success">Guardar
-      <span class="glyphicon glyphicon-floppy-disk"></span></button>
-  </div>
+    <div class="field">
+      <%= f.label :Active %><br>
+      <%= f.check_box :Active %>
+    </div>
+    <%= render "layouts/formactions", path_to_list: positions_path %>
 <% end %>

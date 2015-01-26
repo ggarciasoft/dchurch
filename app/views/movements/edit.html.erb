@@ -1,6 +1,7 @@
-<h1>Editing movement</h1>
+<h1>Editar Movimiento</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @movement %> |
-<%= link_to 'Back', movements_path %>
+<%= link_to @movement do %>
+    <button class="btn btn-info">Ver <span class="glyphicon glyphicon-eye-open"></span></button>
+<% end %>

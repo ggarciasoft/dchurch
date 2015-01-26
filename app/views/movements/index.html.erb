@@ -1,16 +1,19 @@
-<h1>Listing movements</h1>
-
-<table>
-  <thead>
+<h1>Lista de Movimientos</h1>
+<%= link_to new_movement_path do %>
+    <button class="btn btn-primary">Nuevo <span class="glyphicon glyphicon-plus-sign"></span></button>
+<% end %>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
     <tr>
       <th>Id</th>
-      <th>Movementdate</th>
-      <th>Movementtype</th>
-      <th>Entitytype</th>
-      <th>Entityreference</th>
-      <th>Asset</th>
-      <th>Assetquantity</th>
-      <th colspan="3"></th>
+      <th>Fecha de Movimiento</th>
+      <th>Tipo de Movimiento</th>
+      <th>Tipo de Entidad</th>
+      <th>Entidad</th>
+      <th>Tipo de Activo</th>
+      <th>Cantidad</th>
+      <th colspan="3">Acción</th>
     </tr>
   </thead>
 
@@ -19,19 +22,25 @@
       <tr>
         <td><%= movement.Id %></td>
         <td><%= movement.MovementDate %></td>
-        <td><%= movement.movementtype_id %></td>
-        <td><%= movement.entitytype_id %></td>
+        <td><%= movement.movementtype.Description %></td>
+        <td><%= movement.entitytype.Description%></td>
         <td><%= movement.EntityReference %></td>
-        <td><%= movement.asset_id %></td>
+        <td><%= movement.asset.Description %></td>
         <td><%= movement.AssetQuantity %></td>
-        <td><%= link_to 'Show', movement %></td>
-        <td><%= link_to 'Edit', edit_movement_path(movement) %></td>
-        <td><%= link_to 'Destroy', movement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to movement do %>
+              <button class="btn btn-info">Ver <span class="glyphicon glyphicon-eye-open"></span></button>
+          <% end %></td>
+        <td><%= link_to edit_movement_path(movement) do %>
+              <button class="btn btn-success">Editar <span class="glyphicon glyphicon-pencil"></span></button>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to movement, method: :delete, data: {confirm: 'Esta Seguro?'} do %>
+              <button class="btn btn-danger">Eliminar <span class="glyphicon glyphicon-remove-sign"></span></button>
+          <% end %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
-
-<%= link_to 'New Movement', new_movement_path %>
