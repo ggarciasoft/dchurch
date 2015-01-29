@@ -15,9 +15,10 @@ class PositionsController < ApplicationController
   # GET /positions/new
   def new
     if params[:id] == nil
-      @position = Position.new
+        @position = Position.new
     else
       set_position
+      @position = Position.new(@position.attributes)
     end
   end
 
@@ -48,11 +49,13 @@ class PositionsController < ApplicationController
   def update
     respond_to do |format|
       if @position.update(position_params)
-        format.html { redirect_to @position, notice: 'Position was successfully updated.' }
-        format.json { render :show, status: :ok, location: @position }
+        if params[:additionalAction] == "saveandnew"
+          format.html { redirect_to ({action: "new", id: @position.id}), notice: 'Position was successfully updated.' }
+        else
+          format.html { redirect_to @position, notice: 'Position was successfully updated.' }
+        end
       else
         format.html { render :edit }
-        format.json { render json: @position.errors, status: :unprocessable_entity }
       end
     end
   end

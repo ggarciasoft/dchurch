@@ -30,9 +30,9 @@ class MovementsController < ApplicationController
     respond_to do |format|
       if @movement.save
         if params[:additionalAction] == "saveandnew"
-          format.html { render :new, notice: 'Movement was successfully created.' }
+          format.html { render :new, notice: 'Movimiento creado.' }
         else
-          format.html { redirect_to @movement, notice: 'Movement was successfully created.' }
+          format.html { redirect_to @movement, notice: 'Movimiento creado.' }
         end
       else
         format.html { render :new }
@@ -46,7 +46,11 @@ class MovementsController < ApplicationController
   def update
     respond_to do |format|
       if @movement.update(movement_params)
-        format.html { redirect_to @movement, notice: 'Movement was successfully updated.' }
+        if params[:additionalAction] == "saveandnew"
+          format.html { render :new, notice: 'Movimiento actualizado.' }
+        else
+          format.html { redirect_to @movement, notice: 'Movimiento actualizado.' }
+        end
       else
         set_dropdown_data
         format.html { render :edit }

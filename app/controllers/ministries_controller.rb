@@ -14,7 +14,11 @@ class MinistriesController < ApplicationController
 
 		respond_to do |format|
 			if @ministry.save
+			if params[:additionalAction] == "saveandnew"
+				format.html { redirect_to ({action: "new", id: @ministry.id}), notice: 'Ministerio Creado.' }
+			else
 				format.html {redirect_to ministries_url, notice: "Ministerio Creado." }
+			end
 			else
 				format.html {render :new}
 			end
@@ -31,7 +35,11 @@ class MinistriesController < ApplicationController
 		respond_to do |format|
 			if 
 				@ministry.update(ministry_params)
-				format.html {redirect_to ministries_url, notice: "Ministerio Actualizado." }
+				if params[:additionalAction] == "saveandnew"
+					format.html { redirect_to ({action: "new", id: @ministry.id}), notice: 'Ministerio Actualizado.' }
+				else
+					format.html {redirect_to ministries_url, notice: "Ministerio Actualizado." }
+				end
 			else
 				format.html {render :edit}
 			end

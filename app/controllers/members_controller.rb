@@ -30,8 +30,11 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       if @member.save
-        format.html { redirect_to @member, notice: 'Member was successfully created.' }
-        format.json { render :show, status: :created, location: @member }
+        if params[:additionalAction] == "saveandnew"
+          format.html { redirect_to ({action: "new", id: @member.id}), notice: 'Miembro creado.' }
+        else
+          format.html { redirect_to @member, notice: 'Miembro creado.' }
+        end
       else
         set_detail_data
         format.html { render :new }
@@ -45,8 +48,11 @@ class MembersController < ApplicationController
   def update
     respond_to do |format|
       if @member.update(member_params)
-        format.html { redirect_to @member, notice: 'Member was successfully updated.' }
-        format.json { render :show, status: :ok, location: @member }
+        if params[:additionalAction] == "saveandnew"
+          format.html { redirect_to ({action: "new", id: @member.id}), notice: 'Miembro actualizado.' }
+        else
+          format.html { redirect_to @member, notice: 'Miembro actualizado.' }
+        end
       else
         set_detail_data
         format.html { render :edit }
