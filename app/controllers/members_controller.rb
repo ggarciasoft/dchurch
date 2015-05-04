@@ -1,7 +1,15 @@
 require 'json'
+require 'SecureRandom'
 class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
   before_action :set_detail_data, only: [:new, :edit]
+  before_action :set_directory, only: [:create, :update, :savePhoto]
+  skip_before_filter :verify_authenticity_token, :only => [:savePhoto]
+
+  def set_directory
+    @tempDirectory = File.dirname(Rails.root.join('app', 'assets', 'temp', 'photo'))
+    @photoDirectory = File.dirname(Rails.root.join('app', 'assets', 'images', 'photos', 'photo'))
+  end
 
   # GET /members
   # GET /members.json
@@ -21,6 +29,7 @@ class MembersController < ApplicationController
 
   # GET /members/1/edit
   def edit
+    @member.PhotoPath = @photoDirectory + '/' + @member.Photo
   end
 
   # POST /members
@@ -30,12 +39,21 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       if @member.save
-        if params[:additionalAction] == "saveandnew"
-          format.html { redirect_to ({action: "new", id: @member.id}), notice: 'Miembro creado.' }
+        if (@member.Photo != '')
+          tempFile = @tempDirectory + '/' + @member.Photo
+          if (File.exist?(tempFile))
+            File.open(@photoDirectory + '/' + @member.Photo, 'wb') { |f| f.write(File.open(tempFile, 'r').read) }
+          end
+        end
+        if params[:additionalAction] == 'saveandnew'
+          format.html { redirect_to ({action: 'new', id: @member.id}), notice: 'Miembro creado.' }
         else
           format.html { redirect_to @member, notice: 'Miembro creado.' }
         end
       else
+        if (@member.Photo != '' && File.exist?(@tempDirectory + '/' + @member.Photo))
+          @member.PhotoPath = @photoDirectory + '/' + @member.Photo
+        end
         set_detail_data
         format.html { render :new }
         format.json { render json: @member.errors, status: :unprocessable_entity }
@@ -46,14 +64,26 @@ class MembersController < ApplicationController
   # PATCH/PUT /members/1
   # PATCH/PUT /members/1.json
   def update
+    newMember = Member.new(member_params)
+    oldPhoto = @member.Photo
     respond_to do |format|
       if @member.update(member_params)
-        if params[:additionalAction] == "saveandnew"
-          format.html { redirect_to ({action: "new", id: @member.id}), notice: 'Miembro actualizado.' }
+        if (newMember.Photo != '' && newMember.Photo != @member.Photo)
+          tempFile = @tempDirectory + '/' + newMember.Photo
+          if (File.exist?(tempFile))
+            File.open(@photoDirectory + '/' + newMember.Photo, 'wb') { |f| f.write(File.open(tempFile, 'r').read) }
+            File.delete(@photoDirectory + '/' + @member.Photo)
+          end
+        end
+        if params[:additionalAction] == 'saveandnew'
+          format.html { redirect_to ({action: 'new', id: @member.id}), notice: 'Miembro actualizado.' }
         else
           format.html { redirect_to @member, notice: 'Miembro actualizado.' }
         end
       else
+        if (@member.Photo != '' && File.exist?(@tempDirectory + '/' + @member.Photo))
+          @member.PhotoPath = @photoDirectory + '/' + @member.Photo
+        end
         set_detail_data
         format.html { render :edit }
         format.json { render json: @member.errors, status: :unprocessable_entity }
@@ -65,10 +95,24 @@ class MembersController < ApplicationController
   # DELETE /members/1.json
   def destroy
     @member.destroy
+    if (@member.Photo != '' && File.exist?(@photoDirectory + '/' + @member.Photo))
+      File.delete(@photoDirectory + '/' + @member.Photo)
+    end
     respond_to do |format|
       format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def savePhoto
+    photo = params[:photo]
+    filename = SecureRandom.uuid + '~~' + photo.original_filename
+    while (File.exist?(@tempDirectory + '/' + filename) && File.exist?(@photoDirectory + '/' + filename))
+      filename = SecureRandom.uuid + '~~' + photo.original_filename
+    end
+
+    File.open(@tempDirectory + '/' + filename, 'wb') { |f| f.write(photo.read) }
+    render plain: filename
   end
 
   private
@@ -84,6 +128,6 @@ class MembersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def member_params
-    params.require(:member).permit(:Id, :FirstName, :LastName, :BirthDate, :ConvertionDate, :Address, :HomePhone, :CellPhone, :BaptismDate, :Active, memberministrypositions_attributes: [:Id, :ministry_id, :position_id])
+    params.require(:member).permit(:Id, :FirstName, :LastName, :BirthDate, :ConvertionDate, :Address, :HomePhone, :CellPhone, :BaptismDate, :Active, :Photo, memberministrypositions_attributes: [:Id, :ministry_id, :position_id])
   end
 end

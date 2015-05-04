@@ -49,6 +49,12 @@
       Activo<br>
       <%= f.check_box :Active %>
     </div>
+    <div class="field">
+      Foto<br>
+        <img id="imgPhoto" src="<%= @member.PhotoPath %>"/>
+        <input type="file" id="fldPhoto" onchange="return changePhoto();"/>
+        <%= f.hidden_field :Photo %>
+    </div>
 
     <div id="divMinisters">
       <%= hidden_field_tag "hdnMinistries", @ministries.to_json %>
@@ -64,6 +70,7 @@
         <tr>
           <th>Ministerio</th>
           <th>Cargo</th>
+
           <th>Acción</th>
         </tr>
         </thead>

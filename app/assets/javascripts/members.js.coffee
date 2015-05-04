@@ -43,3 +43,31 @@ createDropDown = (name, lst) ->
   table.removeChild(btn.parentNode.parentNode)
   table.removeChild(hiddenId)
   false
+
+@changePhoto = () ->
+    event.preventDefault();
+    http = new XMLHttpRequest();
+    fldPhoto = document.getElementById("fldPhoto");
+    if(fldPhoto)
+      photo = fldPhoto.files[0];
+      formData = new FormData();
+      formData.append("photo", photo);
+      $.ajax({
+        url: "/members/savePhoto",
+        contentType: false,
+        type: 'POST',
+        dataType: 'json',
+        data: formData,
+        processData: false,
+        complete: (data) ->
+          document.getElementById("member_Photo").value =data.responseText;
+          document.getElementById("imgPhoto").src =  '/assets/' + data.responseText;
+          true
+      });
+#      http.open("POST","/members/savePhoto",true);
+#      http.setRequestHeader("Content-type", "multipart/form-data");
+#      http.onreadystatechange = () ->
+#        if (http.readyState==4 && http.status==200)
+#          document.getElementById("imgPhoto").src = "/assets/images/photos/" + http.responseText;
+#      http.send(formData);
+    false

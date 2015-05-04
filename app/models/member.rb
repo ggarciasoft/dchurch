@@ -7,6 +7,8 @@ class Member < ActiveRecord::Base
 	validates :HomePhone, length: { maximum: 10 }
 	validates :CellPhone, length: { maximum: 10 }
 
+  attr_accessor :PhotoPath
+
 	after_validation(on: :update) do
 		member = Member.find(id)
 		member.memberministrypositions.each { |o|
