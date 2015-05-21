@@ -53,7 +53,9 @@
       Foto<br>
         <img id="imgPhoto" src="<%= @member.PhotoPath %>"/>
         <input type="file" id="fldPhoto" onchange="return changePhoto();"/>
-        <%= f.hidden_field :Photo %>
+      <%= f.hidden_field :Photo %>
+      <%= f.hidden_field :PhotoPath %>
+
     </div>
 
     <div id="divMinisters">

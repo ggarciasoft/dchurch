@@ -50,6 +50,10 @@
   <%= check_box_tag "chkActive", nil, @member.Active, disabled: true %>
 </p>
 
+<p>
+  <strong>Imagen:</strong>
+  <img id="imgPhoto" src="<%= @member.PhotoPath %>"/>
+</p>
 
 <div id="divMinisters">
   <h1>Ministerios</h1>

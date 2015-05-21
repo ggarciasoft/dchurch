@@ -6,8 +6,8 @@
   <button class="btn btn-success" onclick="saveAndNewClick();">Guardar y Nuevo
     <span class="glyphicon glyphicon-floppy-disk"></span> <span class="glyphicon glyphicon-plus-sign"></span></button>
   |
-  <%= link_to path_to_list do %>
-      <button class="btn btn-default">Lista <span class="glyphicon glyphicon-list"></span></button>
+  <%= link_to path_to_list, class: "btn btn-default" do %>
+      Lista <span class="glyphicon glyphicon-list"></span>
   <% end %>
 
 </div>

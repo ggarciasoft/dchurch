@@ -29,7 +29,7 @@ createDropDown = (name, lst) ->
     JSON.parse(document.getElementById("hdnPositions").value)))
 
   btn = document.createElement("BUTTON")
-  btn.className =  "btn btn-danger"
+  btn.className = "btn btn-danger"
   btn.onclick = () -> deleteMinistry(this)
   btn.innerHTML = 'Eliminar <span class="glyphicon glyphicon-remove-sign"></span>'
   column3.appendChild(btn)
@@ -45,29 +45,29 @@ createDropDown = (name, lst) ->
   false
 
 @changePhoto = () ->
-    event.preventDefault();
-    http = new XMLHttpRequest();
-    fldPhoto = document.getElementById("fldPhoto");
-    if(fldPhoto)
-      photo = fldPhoto.files[0];
-      formData = new FormData();
-      formData.append("photo", photo);
-      $.ajax({
-        url: "/members/savePhoto",
-        contentType: false,
-        type: 'POST',
-        dataType: 'json',
-        data: formData,
-        processData: false,
-        complete: (data) ->
-          document.getElementById("member_Photo").value =data.responseText;
-          document.getElementById("imgPhoto").src =  '/assets/' + data.responseText;
-          true
-      });
-#      http.open("POST","/members/savePhoto",true);
-#      http.setRequestHeader("Content-type", "multipart/form-data");
-#      http.onreadystatechange = () ->
-#        if (http.readyState==4 && http.status==200)
-#          document.getElementById("imgPhoto").src = "/assets/images/photos/" + http.responseText;
-#      http.send(formData);
-    false
+  event.preventDefault();
+  http = new XMLHttpRequest();
+  fldPhoto = document.getElementById("fldPhoto");
+  if(fldPhoto)
+    photo = fldPhoto.files[0];
+    formData = new FormData();
+    formData.append("photo", photo);
+    $.ajax({
+      url: "/members/savePhoto",
+      contentType: false,
+      type: 'POST',
+      dataType: 'json',
+      data: formData,
+      processData: false,
+      complete: (data) ->
+        document.getElementById("member_Photo").value = data.responseText;
+        document.getElementById("member_PhotoPath").value = document.getElementById("imgPhoto").src = '/assets/' + data.responseText;
+        true
+    });
+  #      http.open("POST","/members/savePhoto",true);
+  #      http.setRequestHeader("Content-type", "multipart/form-data");
+  #      http.onreadystatechange = () ->
+  #        if (http.readyState==4 && http.status==200)
+  #          document.getElementById("imgPhoto").src = "/assets/images/photos/" + http.responseText;
+  #      http.send(formData);
+  false
