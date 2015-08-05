@@ -1,4 +1,5 @@
 <%= form_for(@movement) do |f| %>
+    <% countDetail = 0 %>
     <% if @movement.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@movement.errors.count, "error") %> prohibited this movement from being saved:</h2>
@@ -17,28 +18,72 @@
       <%= f.date_field :MovementDate %>
     </div>
     <div class="field">
-      Tipo de Movimiento<br>
-      <%= f.select :movementtype_id, @movementTypes %>
-    </div>
-    <div class="field">
-      Tipo de Entidad<br>
-      <%= f.select :entitytype_id, @entityTypes %>
-    </div>
-    <div class="field">
-      Entidad<br>
-      <%= f.text_field :EntityReference %>
-    </div>
-    <div class="field">
-      Tipo de Activo<br>
-      <%= f.select :asset_id, @assets %>
-    </div>
-    <div class="field">
-      Cantidad<br>
-      <%= f.text_field :AssetQuantity %>
-    </div>
-    <div class="field">
-      Comentario<br>
+      Comentarios<br>
       <%= f.text_area :Comments %>
+    </div>
+
+    <div id="divMovements">
+      <h1>Detalle Movimientos</h1>
+
+      <div class="field">
+        Tipo de Movimiento<br>
+        <%= select_tag "drpMovement", options_for_select(@movementTypes) %>
+      </div>
+      <div class="field">
+        Tipo de Entidad<br>
+        <%= select_tag "drpEntityType", options_for_select(@entityTypes) %>
+      </div>
+      <div class="field">
+        Entidad<br>
+        <%= text_field_tag "txtEntity" %>
+      </div>
+      <div class="field">
+        Tipo de Activo<br>
+        <%= select_tag "drpAssetType", options_for_select(@assets) %>
+      </div>
+      <div class="field">
+        Cantidad<br>
+        <%= text_field_tag "txtQuantity" %>
+      </div>
+
+      <div class="field">
+        Comentario<br>
+        <%= text_area_tag "txtComment" %>
+      </div>
+
+      <button id="btnAddMovement"
+              class="btn btn-primary" onclick="addDetail(); return false;">
+        Añadir Movimiento <span class="glyphicon glyphicon-plus-sign"></span></button>
+
+      <table id="tblMovements" class="table table-striped table-bordered">
+        <thead>
+        <tr>
+          <th>Tipo de Movimiento</th>
+          <th>Tipo de Entidad</th>
+          <th>Entidad</th>
+          <th>Tipo de Activo</th>
+          <th>Cantidad</th>
+          <th>Comentario</th>
+
+          <th>Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%= f.fields_for :movementsdetail do |detail| %>
+            <tr data-index="<%= countDetail %>">
+              <td>
+                <%= detail.text_field :Comment %>
+              </td>
+
+              <td>
+                <button class="btn btn-danger" onclick="deleteDetail(this); return false;">Eliminar
+                  <span class="glyphicon glyphicon-remove-sign"></span></button>
+              </td>
+              <% countDetail = countDetail + 1 %>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
     </div>
     <%= render "layouts/formactions", path_to_list: movements_path %>
 <% end %>

@@ -1,5 +1,4 @@
 class Movement < ActiveRecord::Base
-  belongs_to :asset
-  belongs_to :entitytype
-  belongs_to :movementtype
+  has_many :movementsdetails, dependent: :destroy
+  accepts_nested_attributes_for :movementsdetails
 end

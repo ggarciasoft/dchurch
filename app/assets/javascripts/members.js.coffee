@@ -1,14 +1,4 @@
-createDropDown = (name, lst) ->
-  drp = document.createElement("SELECT")
-  drp.setAttribute("name", name)
-  for item in lst
-    option = document.createElement("OPTION")
-    option.text = item[0]
-    option.value = item[1]
-    drp.appendChild(option)
-  drp
-
-@addMinistry = () ->
+@addDetail = () ->
   lstRows = document.querySelectorAll("#tblMinistries tbody tr")
   lastRow = lstRows[lstRows.length - 1]
   rowId = 0
@@ -35,7 +25,7 @@ createDropDown = (name, lst) ->
   column3.appendChild(btn)
   false
 
-@deleteMinistry = (btn) ->
+@deleteDetail = (btn) ->
   row = btn.parentNode.parentNode
   index = row.getAttribute("data-index")
   table = row.parentNode

@@ -18,3 +18,14 @@
 function saveAndNewClick(){
     document.getElementById("hdnAdditionalAction").value = "saveandnew";
 }
+function createDropDown(name, lst) {
+    var drp = document.createElement("SELECT");
+    drp.setAttribute("name", name);
+    var option;
+    for (var item in lst)
+        option = document.createElement("OPTION");
+    option.text = item[0];
+    option.value = item[1];
+    drp.appendChild(option);
+    return drp;
+}
