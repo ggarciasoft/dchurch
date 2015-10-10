@@ -16,10 +16,13 @@ class MovementsController < ApplicationController
   # GET /movements/new
   def new
     @movement = Movement.new
+    2.times { @movement.movementsdetails.build }
+    @movementDetail = Movementsdetail.new
   end
 
   # GET /movements/1/edit
   def edit
+    @movementDetail = Movementsdetail.new
   end
 
   # POST /movements
@@ -68,6 +71,10 @@ class MovementsController < ApplicationController
     end
   end
 
+  def savedetailrow
+    render partial: "detailrow", locals: {movementsdetails: Movementsdetail.new(movementDetail_params)}
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_movement
@@ -83,5 +90,10 @@ class MovementsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def movement_params
     params.require(:movement).permit(:Id, :MovementDate, :Comments, movementsdetails_attributes: [:movementtype_id, :entitytype_id, :EntityReference, :asset_id, :AssetQuantity, :Comment])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def movementDetail_params
+    params.require(:movementsdetail).permit(:movementType_id, :entityType_id, :entityReference, :asset_id, :assetQuantity, :Comment)
   end
 end

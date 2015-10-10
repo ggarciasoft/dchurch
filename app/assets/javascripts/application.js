@@ -14,8 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require jquery-ui/dialog
 
-function saveAndNewClick(){
+function saveAndNewClick() {
     document.getElementById("hdnAdditionalAction").value = "saveandnew";
 }
 function createDropDown(name, lst) {
@@ -29,3 +30,10 @@ function createDropDown(name, lst) {
     drp.appendChild(option);
     return drp;
 }
+
+$(document).ready(function () {
+    $(".divDialog").dialog({
+        modal: true,
+        autoOpen: false
+    });
+});

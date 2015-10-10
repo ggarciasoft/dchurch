@@ -1,0 +1,27 @@
+<%= fields_for 'movement[movementsdetail_attributes][]', movementsdetails do |d| %>
+    <tr>
+      <td>
+        <%= d.hidden_field :movementType_id %>
+      </td>
+      <td>
+        <%= d.hidden_field :entityType_id %>
+      </td>
+      <td>
+        <%= d.hidden_field :entityReference %>
+      </td>
+      <td>
+        <%= d.hidden_field :asset_id %>
+      </td>
+      <td>
+        <%= d.hidden_field :assetQuantity %>
+      </td>
+      <td>
+        <%= d.hidden_field :Comment %>
+      </td>
+      <td>
+        <button class="btn btn-danger" onclick="deleteDetail(this); return false;">Eliminar
+          <span class="glyphicon glyphicon-remove-sign"></span></button>
+      </td>
+    </tr>
+<% end %>
+

@@ -1,0 +1,33 @@
+<div id="divPopupDetail" class="divDialog">
+  <%= form_for(@movementDetail, remote: true) do |f| %>
+      <div class="field">
+        Tipo de Movimiento<br>
+        <%= f.select :movementType_id, options_for_select(@movementTypes) %>
+      </div>
+      <div class="field">
+        Tipo de Entidad<br>
+        <%= f.select :entityType_id, options_for_select(@entityTypes) %>
+      </div>
+      <div class="field">
+        Entidad<br>
+        <%= f.text_field :entityReference %>
+      </div>
+      <div class="field">
+        Tipo de Activo<br>
+        <%= f.select :asset_id, options_for_select(@assets) %>
+      </div>
+      <div class="field">
+        Cantidad<br>
+        <%= f.number_field :assetQuantity %>
+      </div>
+
+      <div class="field">
+        Comentario<br>
+        <%= f.text_area :Comment %>
+      </div>
+
+      <button id="btnSaveMovement"
+              class="btn btn-success">
+        Guardar Movimiento <span class="glyphicon glyphicon-floppy-disk"></span></button>
+  <% end %>
+</div>
