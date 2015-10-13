@@ -1,25 +1,33 @@
 <%= fields_for 'movement[movementsdetail_attributes][]', movementsdetails do |d| %>
-    <tr>
+    <tr data-index="<%= movementsdetails.Id %>">
       <td>
+        <%= d.hidden_field :Id %>
+        <%= d.text_field :movementType_Description, disabled: "disabled" %>
         <%= d.hidden_field :movementType_id %>
       </td>
       <td>
+        <%= d.text_field :entityType_Description, disabled: "disabled" %>
         <%= d.hidden_field :entityType_id %>
       </td>
       <td>
-        <%= d.hidden_field :entityReference %>
+        <%= d.text_field :entityReference, disabled: "disabled" %>
       </td>
       <td>
+        <%= d.text_field :asset_Description, disabled: "disabled" %>
         <%= d.hidden_field :asset_id %>
       </td>
       <td>
-        <%= d.hidden_field :assetQuantity %>
+        <%= d.text_field :assetQuantity, disabled: "disabled" %>
       </td>
       <td>
-        <%= d.hidden_field :Comment %>
+        <%= d.text_field :Comment, disabled: "disabled" %>
       </td>
       <td>
-        <button class="btn btn-danger" onclick="deleteDetail(this); return false;">Eliminar
+        <button class="btn btn-success" onclick="return editDetail(this);">Editar
+          <span class="glyphicon glyphicon-pencil"></span></button>
+      </td>
+      <td>
+        <button class="btn btn-danger" onclick="return deleteDetail(this);">Eliminar
           <span class="glyphicon glyphicon-remove-sign"></span></button>
       </td>
     </tr>

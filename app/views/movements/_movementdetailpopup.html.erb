@@ -1,33 +1,35 @@
-<div id="divPopupDetail" class="divDialog">
-  <%= form_for(@movementDetail, remote: true) do |f| %>
-      <div class="field">
-        Tipo de Movimiento<br>
-        <%= f.select :movementType_id, options_for_select(@movementTypes) %>
-      </div>
-      <div class="field">
-        Tipo de Entidad<br>
-        <%= f.select :entityType_id, options_for_select(@entityTypes) %>
-      </div>
-      <div class="field">
-        Entidad<br>
-        <%= f.text_field :entityReference %>
-      </div>
-      <div class="field">
-        Tipo de Activo<br>
-        <%= f.select :asset_id, options_for_select(@assets) %>
-      </div>
-      <div class="field">
-        Cantidad<br>
-        <%= f.number_field :assetQuantity %>
-      </div>
+<%= form_for(@movementDetail, remote: true) do |f| %>
+    <%= f.hidden_field :Id %>
+    <div id="divMovementType" data-valuetype class="field">
+      Tipo de Movimiento<br>
+      <%= f.select :movementType_id, options_for_select(@movementTypes) %>
+      <%= f.hidden_field :movementType_Description %>
+    </div>
+    <div id="divEntityType" data-valuetype class="field">
+      Tipo de Entidad<br>
+      <%= f.select :entityType_id, options_for_select(@entityTypes) %>
+      <%= f.hidden_field :entityType_Description %>
+    </div>
+    <div class="field">
+      Entidad<br>
+      <%= f.text_field :entityReference %>
+    </div>
+    <div id="divAsset" data-valuetype class="field">
+      Tipo de Activo<br>
+      <%= f.select :asset_id, options_for_select(@assets) %>
+      <%= f.hidden_field :asset_Description %>
+    </div>
+    <div class="field">
+      Cantidad<br>
+      <%= f.number_field :assetQuantity %>
+    </div>
 
-      <div class="field">
-        Comentario<br>
-        <%= f.text_area :Comment %>
-      </div>
+    <div class="field">
+      Comentario<br>
+      <%= f.text_area :Comment %>
+    </div>
 
-      <button id="btnSaveMovement"
-              class="btn btn-success">
-        Guardar Movimiento <span class="glyphicon glyphicon-floppy-disk"></span></button>
-  <% end %>
-</div>
+    <button id="btnSaveMovement"
+            class="btn btn-success">
+      Guardar Movimiento <span class="glyphicon glyphicon-floppy-disk"></span></button>
+<% end %>

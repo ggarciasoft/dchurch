@@ -1,6 +1,6 @@
 class MovementsController < ApplicationController
   before_action :set_movement, only: [:show, :edit, :update, :destroy]
-  before_action :set_dropdown_data, only: [:show, :new, :edit]
+  before_action :set_dropdown_data, only: [:edit, :new]
 
   # GET /movements
   # GET /movements.json
@@ -17,6 +17,8 @@ class MovementsController < ApplicationController
   def new
     @movement = Movement.new
     2.times { @movement.movementsdetails.build }
+    @movement.movementsdetails[0].Id = 1
+    @movement.movementsdetails[1].Id = 2
     @movementDetail = Movementsdetail.new
   end
 
@@ -94,6 +96,6 @@ class MovementsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def movementDetail_params
-    params.require(:movementsdetail).permit(:movementType_id, :entityType_id, :entityReference, :asset_id, :assetQuantity, :Comment)
+    params.require(:movementsdetail).permit(:movementType_id, :movementType_Description, :entityType_id, :entityType_Description, :entityReference, :asset_id, :asset_Description, :assetQuantity, :Comment)
   end
 end
