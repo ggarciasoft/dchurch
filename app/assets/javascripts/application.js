@@ -16,9 +16,17 @@
 //= require bootstrap
 //= require jquery-ui/dialog
 
+$(document).ready(function () {
+    $(".divDialog").dialog({
+        modal: true,
+        autoOpen: false
+    });
+});
+
 function saveAndNewClick() {
     document.getElementById("hdnAdditionalAction").value = "saveandnew";
 }
+
 function createDropDown(name, lst) {
     var drp = document.createElement("SELECT");
     drp.setAttribute("name", name);
@@ -30,10 +38,3 @@ function createDropDown(name, lst) {
     drp.appendChild(option);
     return drp;
 }
-
-$(document).ready(function () {
-    $(".divDialog").dialog({
-        modal: true,
-        autoOpen: false
-    });
-});

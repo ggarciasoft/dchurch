@@ -1,5 +1,5 @@
 <%= form_for(@movementDetail, remote: true) do |f| %>
-    <%= f.hidden_field :Id %>
+    <%= f.hidden_field :Id, class: "Id" %>
     <div id="divMovementType" data-valuetype class="field">
       Tipo de Movimiento<br>
       <%= f.select :movementType_id, options_for_select(@movementTypes) %>

@@ -3,6 +3,18 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
+  $("#btnAddMovement").click(()->
+    $("#new_movementsdetail")[0].reset()
+
+    hdnId = $("#new_movementsdetail .Id")
+    if(hdnId.val() == "")
+
+      hdnId.val(parseInt($("#tblMovements tbody tr:last-child").attr("data-index")) + 1)
+
+    $('#divPopupDetail').dialog('open').dialog('option', 'title', 'Nuevo Movimiento')
+    false
+  )
+
   $("#btnSaveMovement").click(()->
     $("div[data-valuetype]").each(() ->
       drp = $(this).find("select")[0]
@@ -10,10 +22,15 @@ $(document).ready ->
       true
     )
   )
+
   $("#new_movementsdetail")
   .on("ajax:success", (e, data, status, xhr) ->
-    $("#tblMovements tbody").append xhr.responseText
-    $(".divDialog").dialog("close")
+    Id = $("#new_movementsdetail .Id").val()
+    if($("#tblMovements tbody tr[data-index=" + Id + "]").length == 0)
+      $("#tblMovements tbody").append xhr.responseText
+    else
+      $("#tblMovements tbody tr[data-index=" + Id + "]").replaceWith xhr.responseText
+    $("#divPopupDetail").dialog("close")
     true
   ).on("ajax:error", (e, xhr, status, error) ->
     alert(error)
@@ -21,6 +38,15 @@ $(document).ready ->
   )
   true
 
-@deleteDetail = (movementDetail) ->
-  $(movementDetail).parent().parent().remove()
+@deleteDetail = (btn) ->
+  $(btn).parent().parent().remove()
+  false
+
+@editDetail = (btn) ->
+  tr = $(btn).parent().parent()
+  tr.find("input[class]").each(() ->
+    $("#movementsdetail_" + this.className).val(this.value)
+    true
+  )
+  $("#divPopupDetail").dialog("open")
   false

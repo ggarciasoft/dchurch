@@ -96,6 +96,6 @@ class MovementsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def movementDetail_params
-    params.require(:movementsdetail).permit(:movementType_id, :movementType_Description, :entityType_id, :entityType_Description, :entityReference, :asset_id, :asset_Description, :assetQuantity, :Comment)
+    params.require(:movementsdetail).permit(:Id, :movementType_id, :movementType_Description, :entityType_id, :entityType_Description, :entityReference, :asset_id, :asset_Description, :assetQuantity, :Comment)
   end
 end

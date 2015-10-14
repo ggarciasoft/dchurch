@@ -1,26 +1,26 @@
 <%= fields_for 'movement[movementsdetail_attributes][]', movementsdetails do |d| %>
     <tr data-index="<%= movementsdetails.Id %>">
       <td>
-        <%= d.hidden_field :Id %>
+        <%= d.hidden_field :Id, class: "Id" %>
         <%= d.text_field :movementType_Description, disabled: "disabled" %>
-        <%= d.hidden_field :movementType_id %>
+        <%= d.hidden_field :movementType_id, class: "movementType_id" %>
       </td>
       <td>
         <%= d.text_field :entityType_Description, disabled: "disabled" %>
-        <%= d.hidden_field :entityType_id %>
+        <%= d.hidden_field :entityType_id, class: "entityType_id" %>
       </td>
       <td>
-        <%= d.text_field :entityReference, disabled: "disabled" %>
+        <%= d.text_field :entityReference, disabled: "disabled", class: "entityReference" %>
       </td>
       <td>
         <%= d.text_field :asset_Description, disabled: "disabled" %>
-        <%= d.hidden_field :asset_id %>
+        <%= d.hidden_field :asset_id, class: "asset_id" %>
       </td>
       <td>
-        <%= d.text_field :assetQuantity, disabled: "disabled" %>
+        <%= d.text_field :assetQuantity, disabled: "disabled", class: "assetQuantity" %>
       </td>
       <td>
-        <%= d.text_field :Comment, disabled: "disabled" %>
+        <%= d.text_field :Comment, disabled: "disabled", class: "Comment" %>
       </td>
       <td>
         <button class="btn btn-success" onclick="return editDetail(this);">Editar
