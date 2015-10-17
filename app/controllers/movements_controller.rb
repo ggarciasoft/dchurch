@@ -16,9 +16,9 @@ class MovementsController < ApplicationController
   # GET /movements/new
   def new
     @movement = Movement.new
-    2.times { @movement.movementsdetails.build }
-    @movement.movementsdetails[0].Id = 1
-    @movement.movementsdetails[1].Id = 2
+    #2.times { @movement.movementsdetails.build }
+    #@movement.movementsdetails[0].Id = 1
+    #@movement.movementsdetails[1].Id = 2
     @movementDetail = Movementsdetail.new
   end
 

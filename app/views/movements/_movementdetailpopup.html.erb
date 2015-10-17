@@ -2,26 +2,26 @@
     <%= f.hidden_field :Id, class: "Id" %>
     <div id="divMovementType" data-valuetype class="field">
       Tipo de Movimiento<br>
-      <%= f.select :movementType_id, options_for_select(@movementTypes) %>
+      <%= f.select :movementType_id, options_for_select(@movementTypes), {include_blank: true}, required: "required" %>
       <%= f.hidden_field :movementType_Description %>
     </div>
     <div id="divEntityType" data-valuetype class="field">
       Tipo de Entidad<br>
-      <%= f.select :entityType_id, options_for_select(@entityTypes) %>
+      <%= f.select :entityType_id, options_for_select(@entityTypes), {include_blank: true}, required: "required" %>
       <%= f.hidden_field :entityType_Description %>
     </div>
     <div class="field">
       Entidad<br>
-      <%= f.text_field :entityReference %>
+      <%= f.text_field :entityReference, required: "required" %>
     </div>
     <div id="divAsset" data-valuetype class="field">
       Tipo de Activo<br>
-      <%= f.select :asset_id, options_for_select(@assets) %>
+      <%= f.select :asset_id, options_for_select(@assets), {include_blank: true}, required: "required" %>
       <%= f.hidden_field :asset_Description %>
     </div>
     <div class="field">
       Cantidad<br>
-      <%= f.number_field :assetQuantity %>
+      <%= f.number_field :assetQuantity, required: "required" %>
     </div>
 
     <div class="field">

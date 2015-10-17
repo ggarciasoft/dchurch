@@ -48,5 +48,5 @@ $(document).ready ->
     $("#movementsdetail_" + this.className).val(this.value)
     true
   )
-  $("#divPopupDetail").dialog("open")
+  $("#divPopupDetail").dialog("open").dialog("option", "title", "Editar Movimiento")
   false
