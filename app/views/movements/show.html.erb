@@ -11,34 +11,47 @@
 </p>
 
 <p>
-  <strong>Tipo de Movimiento:</strong>
-  <%= @movement.movementtype.Description%>
-</p>
-
-<p>
-  <strong>Tipo de Entidad:</strong>
-  <%= @movement.entitytype.Description %>
-</p>
-
-<p>
-  <strong>Entidad:</strong>
-  <%= @movement.EntityReference %>
-</p>
-
-<p>
-  <strong>Tipo de Activo:</strong>
-  <%= @movement.asset.Description %>
-</p>
-
-<p>
-  <strong>Cantidad:</strong>
-  <%= @movement.AssetQuantity %>
-</p>
-
-<p>
   <strong>Comentario:</strong>
   <%= @movement.Comments %>
 </p>
+
+<table id="tblMovements" class="table table-striped table-bordered">
+  <thead>
+  <tr>
+    <th>Tipo de Movimiento</th>
+    <th>Tipo de Entidad</th>
+    <th>Entidad</th>
+    <th>Tipo de Activo</th>
+    <th>Cantidad</th>
+    <th>Comentario</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @movement.movementsdetails.each do |m| %>
+      <tr>
+        <td>
+          <%= m.movementType_Description %>
+        </td>
+        <td>
+          <%= m.entityType_Description %>
+        </td>
+        <td>
+          <%= m.entityReference %>
+        </td>
+        <td>
+          <%= m.asset_Description %>
+        </td>
+        <td>
+          <%= m.assetQuantity %>
+        </td>
+        <td>
+          <%= m.Comment %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
 <%= link_to edit_movement_path(@movement) do %>
     <button class="btn btn-success">Editar <span class="glyphicon glyphicon-pencil"></span></button>
 <% end %> |

@@ -8,11 +8,6 @@
     <tr>
       <th>Id</th>
       <th>Fecha de Movimiento</th>
-      <th>Tipo de Movimiento</th>
-      <th>Tipo de Entidad</th>
-      <th>Entidad</th>
-      <th>Tipo de Activo</th>
-      <th>Cantidad</th>
       <th colspan="3">Acción</th>
     </tr>
   </thead>
@@ -22,11 +17,6 @@
       <tr>
         <td><%= movement.Id %></td>
         <td><%= movement.MovementDate %></td>
-        <td><%= movement.movementtype.Description %></td>
-        <td><%= movement.entitytype.Description%></td>
-        <td><%= movement.EntityReference %></td>
-        <td><%= movement.asset.Description %></td>
-        <td><%= movement.AssetQuantity %></td>
         <td><%= link_to movement do %>
               <button class="btn btn-info">Ver <span class="glyphicon glyphicon-eye-open"></span></button>
           <% end %></td>

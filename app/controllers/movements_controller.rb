@@ -19,12 +19,12 @@ class MovementsController < ApplicationController
     #2.times { @movement.movementsdetails.build }
     #@movement.movementsdetails[0].Id = 1
     #@movement.movementsdetails[1].Id = 2
-    @movementDetail = Movementsdetail.new
+    @movementdetail = Movementsdetail.new
   end
 
   # GET /movements/1/edit
   def edit
-    @movementDetail = Movementsdetail.new
+    @movementdetail = Movementsdetail.new
   end
 
   # POST /movements
@@ -74,7 +74,7 @@ class MovementsController < ApplicationController
   end
 
   def savedetailrow
-    render partial: "detailrow", locals: {movementsdetails: Movementsdetail.new(movementDetail_params)}
+    render partial: "detailrow", locals: {movementsdetails: Movementsdetail.new(movementdetail_params)}
   end
 
   private
@@ -85,17 +85,21 @@ class MovementsController < ApplicationController
 
   def set_dropdown_data
     @assets = Asset.all.collect { |m| [m.Description, m.Id] }
-    @entityTypes = Entitytype.all.collect { |m| [m.Description, m.Id] }
-    @movementTypes = Movementtype.all.collect { |m| [m.Description, m.Id] }
+    @entitytypes = Entitytype.all.collect { |m| [m.Description, m.Id] }
+    @movementtypes = Movementtype.all.collect { |m| [m.Description, m.Id] }
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def movement_params
-    params.require(:movement).permit(:Id, :MovementDate, :Comments, movementsdetails_attributes: [:movementtype_id, :entitytype_id, :EntityReference, :asset_id, :AssetQuantity, :Comment])
+    params.require(:movement).permit(:Id, :MovementDate, :Comments, movementsdetail_attributes: [:Id, :movementType_id, :movementType_Description, :entityType_id, :entityType_Description, :entityReference, :asset_id, :asset_Description, :assetQuantity, :Comment])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def movementDetail_params
-    params.require(:movementsdetail).permit(:Id, :movementType_id, :movementType_Description, :entityType_id, :entityType_Description, :entityReference, :asset_id, :asset_Description, :assetQuantity, :Comment)
+  def movementdetail_params
+    params.require(:movementsdetail).permit(movementdetail_params_symbol)
+  end
+
+  def movementdetail_params_symbol
+    [:Id, :movementType_id, :movementType_Description, :entityType_id, :entityType_Description, :entityReference, :asset_id, :asset_Description, :assetQuantity, :Comment]
   end
 end

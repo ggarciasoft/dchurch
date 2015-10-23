@@ -1,13 +1,13 @@
-<%= form_for(@movementDetail, remote: true) do |f| %>
+<%= form_for(@movementdetail, remote: true) do |f| %>
     <%= f.hidden_field :Id, class: "Id" %>
     <div id="divMovementType" data-valuetype class="field">
       Tipo de Movimiento<br>
-      <%= f.select :movementType_id, options_for_select(@movementTypes), {include_blank: true}, required: "required" %>
+      <%= f.select :movementType_id, options_for_select(@movementtypes), {include_blank: true}, required: "required" %>
       <%= f.hidden_field :movementType_Description %>
     </div>
     <div id="divEntityType" data-valuetype class="field">
       Tipo de Entidad<br>
-      <%= f.select :entityType_id, options_for_select(@entityTypes), {include_blank: true}, required: "required" %>
+      <%= f.select :entityType_id, options_for_select(@entitytypes), {include_blank: true}, required: "required" %>
       <%= f.hidden_field :entityType_Description %>
     </div>
     <div class="field">
