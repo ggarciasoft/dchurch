@@ -6,12 +6,12 @@
 </p>
 
 <p>
-  <strong>Descriptión:</strong>
+  <strong>Descripción:</strong>
   <%= @position.Description %>
 </p>
 
 <p>
-  <strong>Active:</strong>
+  <strong>Activo:</strong>
   <%= check_box_tag "chkActive", nil, @position.Active, disabled: true %>
 </p>
 <%= link_to edit_position_path(@position) do %>

@@ -65,7 +65,7 @@
       <h1>Ministerios</h1>
 
       <button id="btnAddMinisty"
-              class="btn btn-primary" onclick="addMinistry(); return false;">
+              class="btn btn-primary" onclick="addDetail(); return false;">
         Añadir Ministerio <span class="glyphicon glyphicon-plus-sign"></span></button>
 
       <table id="tblMinistries" class="table table-striped table-bordered">
@@ -83,7 +83,7 @@
               <td><%= detail.select :ministry_id, @ministries %></td>
               <td><%= detail.select :position_id, @positions %></td>
               <td>
-                <button class="btn btn-danger" onclick="deleteMinistry(this); return false;">Eliminar
+                <button class="btn btn-danger" onclick="deleteDetail(this); return false;">Eliminar
                   <span class="glyphicon glyphicon-remove-sign"></span></button>
               </td>
               <% countDetail = countDetail + 1 %>

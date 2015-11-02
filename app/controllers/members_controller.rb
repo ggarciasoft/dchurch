@@ -1,5 +1,5 @@
 require 'json'
-require 'SecureRandom'
+require 'securerandom'
 class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
   before_action :set_detail_data, only: [:new, :edit]
