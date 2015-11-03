@@ -6,15 +6,27 @@ class Movementsdetail < ActiveRecord::Base
   belongs_to :movement
 
   def asset_Description
-    @asset_description
+    if (@asset_description.nil?)
+      asset.Description
+    else
+      @asset_description
+    end
   end
 
   def entityType_Description
-    @entitytype_description
+    if (@entitytype_description.nil?)
+      entitytype.Description
+    else
+      @entitytype_description
+    end
   end
 
   def movementType_Description
-    @movementtype_description
+    if (@movementtype_description.nil?)
+      movementtype.Description
+    else
+      @movementtype_description
+    end
   end
 
   def asset_Description= value

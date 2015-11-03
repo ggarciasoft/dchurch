@@ -7,9 +7,10 @@ $(document).ready ->
     $("#new_movementsdetail")[0].reset()
 
     hdnId = $("#new_movementsdetail .Id")
-    if(hdnId.val() == "")
+    index = $("#tblMovements tbody tr:last-child").attr("data-index")
+    index = -1 if index == undefined
 
-      hdnId.val(parseInt($("#tblMovements tbody tr:last-child").attr("data-index")) + 1)
+    hdnId.val(parseInt(index) + 1) if hdnId.val() == ""
 
     $('#divPopupDetail').dialog('open').dialog('option', 'title', 'Nuevo Movimiento')
     false
