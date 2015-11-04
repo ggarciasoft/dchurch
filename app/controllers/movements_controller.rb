@@ -80,7 +80,7 @@ class MovementsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_movement
-    @movement = Movement.includes(movementsdetails: :movementtype).find(params[:id])
+    @movement = Movement.find(params[:id])
   end
 
   def set_dropdown_data
@@ -91,7 +91,7 @@ class MovementsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def movement_params
-    params.require(:movement).permit(:Id, :MovementDate, :Comments, movementsdetails_attributes: [:Id, :movementType_id, :movementType_Description, :entityType_id, :entityType_Description, :entityReference, :asset_id, :asset_Description, :assetQuantity, :Comment])
+    params.require(:movement).permit(:Id, :MovementDate, :Comments, movementsdetails_attributes: [:Id, :movementtype_id, :movementType_Description, :entitytype_id, :entityType_Description, :entityReference, :asset_id, :asset_Description, :assetQuantity, :Comment])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
