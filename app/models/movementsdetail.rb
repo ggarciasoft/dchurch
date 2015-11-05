@@ -4,6 +4,13 @@ class Movementsdetail < ActiveRecord::Base
   belongs_to :entitytype
   belongs_to :movementtype
   belongs_to :movement
+  validates :movement_id, presence: true
+  validates :movementtype_id, presence: true
+  validates :entitytype_id, presence: true
+  validates :entityReference, presence: true, length: {maximum: 200}
+  validates :asset_id, presence: true
+  validates :assetQuantity, presence: true
+  validates :Comment, length: {maximum: 50}
 
   def asset_Description
     if (@asset_description.nil? && !asset.nil?)

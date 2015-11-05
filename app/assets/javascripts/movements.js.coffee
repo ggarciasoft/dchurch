@@ -10,7 +10,7 @@ $(document).ready ->
     index = $("#tblMovements tbody tr:last-child").attr("data-index")
     index = -1 if index == undefined
 
-    hdnId.val(parseInt(index) + 1) if hdnId.val() == ""
+    hdnId.val(parseInt(index) + 1)
 
     $('#divPopupDetail').dialog('open').dialog('option', 'title', 'Nuevo Movimiento')
     false
