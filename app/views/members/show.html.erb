@@ -1,50 +1,50 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Id:</strong>
-  <%= @member.Id %>
-</p>
-
-<p>
-  <strong>Nombre:</strong>
-  <%= @member.FirstName %>
-</p>
-
-<p>
-  <strong>Apellido:</strong>
-  <%= @member.LastName %>
-</p>
-
-<p>
-  <strong>Fecha de Nacimiento:</strong>
-  <%= @member.BirthDate %>
-</p>
-
-<p>
-  <strong>Fecha de Conversión:</strong>
-  <%= @member.ConvertionDate %>
-</p>
-
-<p>
-  <strong>Dirección:</strong>
-  <%= @member.Address %>
-</p>
-
-<p>
-  <strong>Teléfono:</strong>
-  <%= @member.HomePhone %>
-</p>
-
-<p>
-  <strong>Celular:</strong>
-  <%= @member.CellPhone %>
-</p>
-
-<p>
-  <strong>Fecha de Bautizo:</strong>
-  <%= @member.BaptismDate %>
-</p>
-
+<table class="paddingright20">
+  <tr>
+    <td><p>
+      <strong>Id:</strong>
+      <%= @member.Id %>
+    </p>
+    </td>
+    <td><p>
+      <strong>Nombre:</strong>
+      <%= @member.FirstName %>
+    </p></td>
+    <td><p>
+      <strong>Apellido:</strong>
+      <%= @member.LastName %>
+    </p></td>
+  </tr>
+  <tr>
+    <td><p>
+      <strong>Fecha de Nacimiento:</strong>
+      <%= @member.BirthDate %>
+    </p></td>
+    <td><p>
+      <strong>Fecha de Conversión:</strong>
+      <%= @member.ConvertionDate %>
+    </p></td>
+    <td><p>
+      <strong>Dirección:</strong>
+      <%= @member.Address %>
+    </p></td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Teléfono:</strong>
+        <%= @member.HomePhone %>
+      </p></td>
+    <td><p>
+      <strong>Celular:</strong>
+      <%= @member.CellPhone %>
+    </p></td>
+    <td><p>
+      <strong>Fecha de Bautizo:</strong>
+      <%= @member.BaptismDate %>
+    </p></td>
+  </tr>
+</table>
 <p>
   <strong>Activo:</strong>
   <%= check_box_tag "chkActive", nil, @member.Active, disabled: true %>

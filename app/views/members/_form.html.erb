@@ -13,47 +13,72 @@
         </div>
     <% end %>
     <p id="notice"><%= notice %></p>
-
-    <div class="field">
-      Nombre<br>
-      <%= f.text_field :FirstName %>
-    </div>
-    <div class="field">
-      Apellido<br>
-      <%= f.text_field :LastName %>
-    </div>
-    <div class="field">
-      Fecha de Nacimiento<br>
-      <%= f.date_field :BirthDate %>
-    </div>
-    <div class="field">
-      Fecha de Conversión<br>
-      <%= f.date_field :ConvertionDate %>
-    </div>
-    <div class="field">
-      Dirección<br>
-      <%= f.text_area :Address %>
-    </div>
-    <div class="field">
-      Telefono de Casa<br>
-      <%= f.telephone_field :HomePhone %>
-    </div>
-    <div class="field">
-      Celular<br>
-      <%= f.telephone_field :CellPhone %>
-    </div>
-    <div class="field">
-      Fecha de Bautizo<br>
-      <%= f.date_field :BaptismDate %>
-    </div>
-    <div class="field">
-      Activo<br>
-      <%= f.check_box :Active %>
-    </div>
+    <table class="paddingright20">
+      <tr>
+        <td>
+          <div class="field">
+            Nombre<br>
+            <%= f.text_field :FirstName %>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            Apellido<br>
+            <%= f.text_field :LastName %>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            Fecha de Nacimiento<br>
+            <%= f.date_field :BirthDate %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="field">
+            Fecha de Conversión<br>
+            <%= f.date_field :ConvertionDate %>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            Dirección<br>
+            <%= f.text_area :Address %>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            Telefono de Casa<br>
+            <%= f.telephone_field :HomePhone %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="field">
+            Celular<br>
+            <%= f.telephone_field :CellPhone %>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            Fecha de Bautizo<br>
+            <%= f.date_field :BaptismDate %>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            Activo<br>
+            <%= f.check_box :Active %>
+          </div>
+        </td>
+      </tr>
+    </table>
     <div class="field">
       Foto<br>
-        <img id="imgPhoto" src="<%= @member.PhotoPath %>"/>
-        <input type="file" id="fldPhoto" onchange="return changePhoto();"/>
+      <img id="imgPhoto" src="<%= @member.PhotoPath %>"/>
+      <input type="file" id="fldPhoto" onchange="return changePhoto();"/>
       <%= f.hidden_field :Photo %>
       <%= f.hidden_field :PhotoPath %>
 

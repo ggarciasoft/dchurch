@@ -4,3 +4,13 @@
 .destroyfield {
   display: none;
 }
+
+table.paddingright20 td {
+  padding-right: 20px;
+  vertical-align: top;
+}
+
+input[type=text], input[type=date], textarea {
+  width: 190px;
+  height: 25px;
+}

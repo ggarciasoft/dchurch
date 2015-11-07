@@ -115,7 +115,7 @@ class MembersController < ApplicationController
       set_directory()
     end
     @member = Member.find(params[:id])
-    if (@member != nil && @member.Photo != '')
+    if (@member != nil && !@member.Photo.nil? && @member.Photo != '')
       @member.PhotoPath = '/assets/' + @member.Photo
       if (!File.exist?(@tempDirectory + '/' + @member.Photo))
         File.open(@tempDirectory + '/' + @member.Photo, 'wb') { |f| f.write(File.open(@photoDirectory + '/' + @member.Photo).read) }
