@@ -15,9 +15,11 @@
 //= require turbolinks
 //= require bootstrap
 //= require jquery-ui/dialog
+//= require jquery-ui/autocomplete
 
 $(document).on('ready page:load', function (e) {
     configureDialog();
+    configureAutocomplete();
 });
 /*.ajaxStart(function(){
  alert("start");
@@ -44,6 +46,13 @@ function createDropDown(name, lst) {
 function configureDialog() {
     $(".divDialog").dialog({
         modal: true,
+        autoOpen: false
+    });
+}
+
+function configureAutocomplete() {
+    $(".autocomplete").autocomplete({
+        source: "/",
         autoOpen: false
     });
 }

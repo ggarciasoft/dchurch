@@ -37,6 +37,18 @@ $(document).ready ->
     alert(error)
     true
   )
+
+  $("#divEntityType select").change(() ->
+    entityReference = $("#divEntityReference input")
+    if(this.value == "1")
+      entityReference.autocomplete({
+        source: "/jmembers.json",
+        minLength: 2
+      })
+    else if(entityReference.hasClass("ui-autocomplete-input"))
+      entityReference.autocomplete("destroy").removeData("autocomplete")
+    true
+  )
   true
 
 @deleteDetail = (btn) ->

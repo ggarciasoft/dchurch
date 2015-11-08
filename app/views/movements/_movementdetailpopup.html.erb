@@ -10,7 +10,7 @@
       <%= f.select :entitytype_id, options_for_select(@entitytypes), {include_blank: true}, required: "required" %>
       <%= f.hidden_field :entityType_Description %>
     </div>
-    <div class="field">
+    <div id="divEntityReference" class="field">
       Entidad<br>
       <%= f.text_field :entityReference, required: "required" %>
     </div>
