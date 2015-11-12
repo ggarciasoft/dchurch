@@ -1,35 +1,50 @@
-<%= form_for(@movementdetail, remote: true) do |f| %>
-    <%= f.hidden_field :Id, class: "Id" %>
-    <div id="divMovementType" data-valuetype class="field">
-      Tipo de Movimiento<br>
-      <%= f.select :movementtype_id, options_for_select(@movementtypes), {include_blank: true}, required: "required" %>
-      <%= f.hidden_field :movementType_Description %>
-    </div>
-    <div id="divEntityType" data-valuetype class="field">
-      Tipo de Entidad<br>
-      <%= f.select :entitytype_id, options_for_select(@entitytypes), {include_blank: true}, required: "required" %>
-      <%= f.hidden_field :entityType_Description %>
-    </div>
-    <div id="divEntityReference" class="field">
-      Entidad<br>
-      <%= f.text_field :entityReference, required: "required" %>
-    </div>
-    <div id="divAsset" data-valuetype class="field">
-      Tipo de Activo<br>
-      <%= f.select :asset_id, options_for_select(@assets), {include_blank: true}, required: "required" %>
-      <%= f.hidden_field :asset_Description %>
-    </div>
-    <div class="field">
-      Cantidad<br>
-      <%= f.number_field :assetQuantity, required: "required" %>
-    </div>
+<div class="modal fade" id="modalMovementDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for(@movementdetail, remote: true, class: 'form-inline') do |f| %>
+            <%= f.hidden_field :Id, class: "Id" %>
+            <div id="divMovementType" data-valuetype class="form-group">
+              <label>Tipo de Movimiento</label>
+              <%= f.select :movementtype_id, options_for_select(@movementtypes), {include_blank: true}, required: "required", class: 'form-control' %>
+              <%= f.hidden_field :movementType_Description %>
+            </div>
+            <div id="divEntityType" data-valuetype class="form-group">
+              <label>Tipo de Entidad</label>
+              <%= f.select :entitytype_id, options_for_select(@entitytypes), {include_blank: true}, required: "required", class: 'form-control' %>
+              <%= f.hidden_field :entityType_Description %>
+            </div>
+            <div id="divEntityReference" class="form-group">
+              <label>Entidad</label>
+              <%= f.text_field :entityReference, required: "required", class: 'form-control' %>
+            </div>
+            <div id="divAsset" data-valuetype class="form-group">
+              <label>Tipo de Activo</label>
+              <%= f.select :asset_id, options_for_select(@assets), {include_blank: true}, required: "required", class: 'form-control' %>
+              <%= f.hidden_field :asset_Description %>
+            </div>
+            <div class="form-group">
+              <label>Cantidad</label>
+              <%= f.number_field :assetQuantity, required: "required", class: 'form-control' %>
+            </div>
 
-    <div class="field">
-      Comentario<br>
-      <%= f.text_area :Comment %>
+            <div class="form-group">
+              <label>Comentario</label>
+              <%= f.text_area :Comment, class: 'form-control' %>
+            </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button id="btnSaveMovement"
+                class="btn btn-success">
+          Guardar Movimiento <span class="glyphicon glyphicon-floppy-disk"></span></button>
+      </div>
     </div>
-
-    <button id="btnSaveMovement"
-            class="btn btn-success">
-      Guardar Movimiento <span class="glyphicon glyphicon-floppy-disk"></span></button>
-<% end %>
+  </div>
+</div>

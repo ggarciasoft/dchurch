@@ -11,8 +11,8 @@ $(document).ready ->
     index = -1 if index == undefined
 
     hdnId.val(parseInt(index) + 1)
-
-    $('#divPopupDetail').dialog('open').dialog('option', 'title', 'Nuevo Movimiento')
+    $("#myModalLabel").text("Nuevo Movimiento")
+    $('#modalMovementDetail').modal('show')
     false
   )
 
@@ -31,7 +31,7 @@ $(document).ready ->
       $("#tblMovements tbody").append xhr.responseText
     else
       $("#tblMovements tbody tr[data-index=" + Id + "]").replaceWith xhr.responseText
-    $("#divPopupDetail").dialog("close")
+    $('#modalMovementDetail').modal('hide')
     true
   ).on("ajax:error", (e, xhr, status, error) ->
     alert(error)
@@ -61,5 +61,6 @@ $(document).ready ->
     $("#movementsdetail_" + this.className).val(this.value)
     true
   )
-  $("#divPopupDetail").dialog("open").dialog("option", "title", "Editar Movimiento")
-  false
+  $("#myModalLabel").text("Editar Movimiento")
+  $('#modalMovementDetail').modal('show')
+false

@@ -1,59 +1,58 @@
 <p id="notice"><%= notice %></p>
-<table class="paddingright20">
-  <tr>
-    <td><p>
-      <strong>Id:</strong>
-      <%= @member.Id %>
-    </p>
-    </td>
-    <td><p>
-      <strong>Nombre:</strong>
-      <%= @member.FirstName %>
-    </p></td>
-    <td><p>
-      <strong>Apellido:</strong>
-      <%= @member.LastName %>
-    </p></td>
-  </tr>
-  <tr>
-    <td><p>
-      <strong>Fecha de Nacimiento:</strong>
-      <%= @member.BirthDate %>
-    </p></td>
-    <td><p>
-      <strong>Fecha de Conversión:</strong>
-      <%= @member.ConvertionDate %>
-    </p></td>
-    <td><p>
-      <strong>Dirección:</strong>
-      <%= @member.Address %>
-    </p></td>
-  </tr>
-  <tr>
-    <td>
-      <p>
-        <strong>Teléfono:</strong>
-        <%= @member.HomePhone %>
-      </p></td>
-    <td><p>
-      <strong>Celular:</strong>
-      <%= @member.CellPhone %>
-    </p></td>
-    <td><p>
-      <strong>Fecha de Bautizo:</strong>
-      <%= @member.BaptismDate %>
-    </p></td>
-  </tr>
-</table>
-<p>
-  <strong>Activo:</strong>
-  <%= check_box_tag "chkActive", nil, @member.Active, disabled: true %>
-</p>
-
-<p>
-  <strong>Imagen:</strong>
-  <img id="imgPhoto" src="<%= @member.PhotoPath %>"/>
-</p>
+<div class="row">
+  <div class="col-md-4">
+    <label>Id:</label>
+    <%= @member.Id %>
+  </div>
+  <div class="col-md-4">
+    <label>Nombre:</label>
+    <%= @member.FirstName %>
+  </div>
+  <div class="col-md-4">
+    <label>Apellido:</label>
+    <%= @member.LastName %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <label>Fecha de Nacimiento:</label>
+    <%= @member.BirthDate %>
+  </div>
+  <div class="col-md-4">
+    <label>Fecha de Conversión:</label>
+    <%= @member.ConvertionDate %>
+  </div>
+  <div class="col-md-4">
+    <label>Dirección:</label>
+    <%= @member.Address %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <label>Teléfono:</label>
+    <%= @member.HomePhone %>
+  </div>
+  <div class="col-md-4">
+    <label>Celular:</label>
+    <%= @member.CellPhone %>
+  </div>
+  <div class="col-md-4">
+    <label>Fecha de Bautizo:</label>
+    <%= @member.BaptismDate %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-1">
+    <label>
+      <%= check_box_tag "chkActive", nil, @member.Active, disabled: true %>Activo</label>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <label>Imagen:</label>
+    <img id="imgPhoto" src="<%= @member.PhotoPath %>" class="img-rounded"/>
+  </div>
+</div>
 
 <div id="divMinisters">
   <h1>Ministerios</h1>

@@ -13,16 +13,16 @@
         </div>
     <% end %>
     <p id="notice"><%= notice %></p>
-
-    <div class="field">
-      Fecha de Movimiento<br>
-      <%= f.date_field :MovementDate, required: "required" %>
+    <div class="form-inline">
+      <div class="form-group">
+        <label>Fecha de Movimiento</label>
+        <%= f.date_field :MovementDate, required: "required", class: 'form-control' %>
     </div>
-    <div class="field">
-      Comentarios<br>
-      <%= f.text_area :Comments %>
+      <div class="form-group">
+        <label>Comentarios</label>
+        <%= f.text_area :Comments, class: 'form-control' %>
     </div>
-
+    </div>
     <div id="divMovements">
       <h1>Detalle Movimientos</h1>
 
@@ -51,6 +51,4 @@
     </div>
     <%= render "layouts/formactions", path_to_list: movements_path %>
 <% end %>
-<div id="divPopupDetail" class="divDialog">
   <%= render partial: "movementdetailpopup" %>
-</div>

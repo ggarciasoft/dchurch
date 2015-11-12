@@ -13,75 +13,60 @@
         </div>
     <% end %>
     <p id="notice"><%= notice %></p>
-    <table class="paddingright20">
-      <tr>
-        <td>
-          <div class="field">
-            Nombre<br>
-            <%= f.text_field :FirstName %>
-          </div>
-        </td>
-        <td>
-          <div class="field">
-            Apellido<br>
-            <%= f.text_field :LastName %>
-          </div>
-        </td>
-        <td>
-          <div class="field">
-            Fecha de Nacimiento<br>
-            <%= f.date_field :BirthDate %>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="field">
-            Fecha de Conversión<br>
-            <%= f.date_field :ConvertionDate %>
-          </div>
-        </td>
-        <td>
-          <div class="field">
-            Dirección<br>
-            <%= f.text_area :Address %>
-          </div>
-        </td>
-        <td>
-          <div class="field">
-            Telefono de Casa<br>
-            <%= f.telephone_field :HomePhone %>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="field">
-            Celular<br>
-            <%= f.telephone_field :CellPhone %>
-          </div>
-        </td>
-        <td>
-          <div class="field">
-            Fecha de Bautizo<br>
-            <%= f.date_field :BaptismDate %>
-          </div>
-        </td>
-        <td>
-          <div class="field">
-            Activo<br>
-            <%= f.check_box :Active %>
-          </div>
-        </td>
-      </tr>
-    </table>
-    <div class="field">
-      Foto<br>
-      <img id="imgPhoto" src="<%= @member.PhotoPath %>"/>
-      <input type="file" id="fldPhoto" onchange="return changePhoto();"/>
-      <%= f.hidden_field :Photo %>
-      <%= f.hidden_field :PhotoPath %>
+    <div class="row">
+      <div class="col-md-4">
+        <label>Nombre</label>
+        <%= f.text_field :FirstName, class: 'form-control' %>
+      </div>
+      <div class="col-md-4">
+        <label>Apellido</label>
+        <%= f.text_field :LastName, class: 'form-control' %>
+      </div>
+      <div class="col-md-4">
+        <label>Fecha de Nacimiento</label>
+        <%= f.date_field :BirthDate, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <label>Fecha de Conversión</label>
+        <%= f.date_field :ConvertionDate, class: 'form-control' %>
+      </div>
+      <div class="col-md-4">
+        <label>Dirección</label>
+        <%= f.text_area :Address, class: 'form-control' %>
+      </div>
+      <div class="col-md-4">
+        <label>Telefono de Casa</label>
+        <%= f.telephone_field :HomePhone, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <label>Celular</label>
+        <%= f.telephone_field :CellPhone, class: 'form-control' %>
+      </div>
+      <div class="col-md-4">
+        <label>Fecha de Bautizo</label>
+        <%= f.date_field :BaptismDate, class: 'form-control' %>
+      </div>
+      <div class="col-md-4">
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :Active %>Activo</label>
+        </div>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="col-md-2">
+        <label>
+          Foto</label>
+        <img id="imgPhoto" src="<%= @member.PhotoPath %>" class="img-rounded"/>
+        <input type="file" id="fldPhoto" onchange="return changePhoto();"/>
+        <%= f.hidden_field :Photo %>
+        <%= f.hidden_field :PhotoPath %>
+      </div>
     </div>
 
     <div id="divMinisters">
