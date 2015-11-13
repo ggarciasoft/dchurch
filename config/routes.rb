@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   resources :positions
   resources :ministries
+  resources :users
   resources :movements
   post '/movementsdetails/', :to => 'movements#savedetailrow', :as => :movementsdetails
   resources :members

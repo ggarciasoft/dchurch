@@ -1,19 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  Id: 
-  MovementDate: 
-  movementtype_id: 
-  entitytype_id: 
-  EntityReference: 
-  asset_id: 
-  AssetQuantity: 
-
-two:
-  Id: 
-  MovementDate: 
-  movementtype_id: 
-  entitytype_id: 
-  EntityReference: 
-  asset_id: 
-  AssetQuantity: 
+#one:
+#  Id: 1
+#  MovementDate: 1990-01-01
+#  Comments: MyString
+#
+#two:
+#  Id: 2
+#  MovementDate: 1990-01-01
+#  Comments: MyString

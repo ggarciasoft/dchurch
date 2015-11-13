@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  Id: 1
-  Description: MyString
-  Active: false
-
-two:
-  Id: 1
-  Description: MyString
-  Active: false
+#one:
+#  Id: 1
+#  Description: MyString
+#  Active: false
+#
+#two:
+#  Id: 2
+#  Description: MyString
+#  Active: false
