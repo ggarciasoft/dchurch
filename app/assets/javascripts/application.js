@@ -20,6 +20,7 @@
 $(document).on('ready page:load', function (e) {
     configureDialog();
     configureAutocomplete();
+    Turbolinks.enableProgressBar(true);
 });
 /*.ajaxStart(function(){
  alert("start");
