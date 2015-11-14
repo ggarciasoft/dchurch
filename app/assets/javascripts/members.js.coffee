@@ -20,7 +20,7 @@
 
   btn = document.createElement("BUTTON")
   btn.className = "btn btn-danger"
-  btn.onclick = () -> deleteMinistry(this)
+  btn.onclick = () -> deleteDetail(this)
   btn.innerHTML = 'Eliminar <span class="glyphicon glyphicon-remove-sign"></span>'
   column3.appendChild(btn)
   false
@@ -31,7 +31,6 @@
   table = row.parentNode
   hiddenId = table.querySelectorAll("input[type=hidden]")[index]
   table.removeChild(btn.parentNode.parentNode)
-  table.removeChild(hiddenId)
   false
 
 @changePhoto = () ->

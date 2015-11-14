@@ -1,85 +1,84 @@
-<p id="notice"><%= notice %></p>
-<div class="row">
-  <div class="col-md-4">
-    <label>Id:</label>
-    <%= @member.Id %>
-  </div>
-  <div class="col-md-4">
-    <label>Nombre:</label>
-    <%= @member.FirstName %>
-  </div>
-  <div class="col-md-4">
-    <label>Apellido:</label>
-    <%= @member.LastName %>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-4">
-    <label>Fecha de Nacimiento:</label>
-    <%= @member.BirthDate %>
-  </div>
-  <div class="col-md-4">
-    <label>Fecha de Conversión:</label>
-    <%= @member.ConvertionDate %>
-  </div>
-  <div class="col-md-4">
-    <label>Dirección:</label>
-    <%= @member.Address %>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-4">
-    <label>Teléfono:</label>
-    <%= @member.HomePhone %>
-  </div>
-  <div class="col-md-4">
-    <label>Celular:</label>
-    <%= @member.CellPhone %>
-  </div>
-  <div class="col-md-4">
-    <label>Fecha de Bautizo:</label>
-    <%= @member.BaptismDate %>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-1">
-    <label>
-      <%= check_box_tag "chkActive", nil, @member.Active, disabled: true %>Activo</label>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-2">
-    <label>Imagen:</label>
-    <img id="imgPhoto" src="<%= @member.PhotoPath %>" class="img-rounded"/>
-  </div>
-</div>
+<div class="panel panel-default">
+  <div class="panel-heading"><h3>Miembro: #<%= @member.Id %></h3></div>
+  <div class="panel-body">
+    <p id="notice"><%= notice %></p>
 
-<div id="divMinisters">
-  <h1>Ministerios</h1>
+    <div class="row">
+      <div class="col-md-4">
+        <label>Nombre:</label>
+        <%= @member.FirstName %>
+      </div>
+      <div class="col-md-4">
+        <label>Apellido:</label>
+        <%= @member.LastName %>
+      </div>
+      <div class="col-md-4">
+        <label>Fecha de Nacimiento:</label>
+        <%= @member.BirthDate %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <label>Fecha de Conversión:</label>
+        <%= @member.ConvertionDate %>
+      </div>
+      <div class="col-md-4">
+        <label>Dirección:</label>
+        <%= @member.Address %>
+      </div>
+      <div class="col-md-4">
+        <label>Teléfono:</label>
+        <%= @member.HomePhone %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <label>Celular:</label>
+        <%= @member.CellPhone %>
+      </div>
+      <div class="col-md-4">
+        <label>Fecha de Bautizo:</label>
+        <%= @member.BaptismDate %>
+      </div>
+      <div class="col-md-4">
+        <label>
+          <%= check_box_tag "chkActive", nil, @member.Active, disabled: true %>Activo</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <label>Imagen:</label>
+        <img id="imgPhoto" src="<%= @member.PhotoPath %>" class="img-rounded"/>
+      </div>
+    </div>
 
-  <table id="tblMinistries" class="table table-striped table-bordered">
-    <thead>
-    <tr>
-      <th>Ministerio</th>
-      <th>Cargo</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @member.memberministrypositions.each do |d| %>
+    <div id="divMinisters">
+      <h1>Ministerios</h1>
+
+      <table id="tblMinistries" class="table table-striped table-bordered">
+        <thead>
         <tr>
-          <td><%= d.ministry.Description %></td>
-          <td><%= d.position.Description %></td>
+          <th>Ministerio</th>
+          <th>Cargo</th>
         </tr>
+        </thead>
+        <tbody>
+        <% @member.memberministrypositions.each do |d| %>
+            <tr>
+              <td><%= d.ministry.Description %></td>
+              <td><%= d.position.Description %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+
+
+    <%= link_to edit_member_path(@member) do %>
+        <button class="btn btn-success">Editar <span class="glyphicon glyphicon-pencil"></span></button>
+    <% end %> |
+    <%= link_to members_path do %>
+        <button class="btn btn-default">Lista <span class="glyphicon glyphicon-list"></span></button>
     <% end %>
-    </tbody>
-  </table>
+  </div>
 </div>
-
-
-<%= link_to edit_member_path(@member) do %>
-    <button class="btn btn-success">Editar <span class="glyphicon glyphicon-pencil"></span></button>
-<% end %> |
-<%= link_to members_path do %>
-    <button class="btn btn-default">Lista <span class="glyphicon glyphicon-list"></span></button>
-<% end %>
-

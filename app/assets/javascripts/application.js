@@ -35,11 +35,13 @@ function createDropDown(name, lst) {
     var drp = document.createElement("SELECT");
     drp.setAttribute("name", name);
     var option;
-    for (var item in lst)
+    for (var i = 0; i < lst.length; i++) {
+        var item = lst[i];
         option = document.createElement("OPTION");
-    option.text = item[0];
-    option.value = item[1];
-    drp.appendChild(option);
+        option.text = item[0];
+        option.value = item[1];
+        drp.appendChild(option);
+    }
     return drp;
 }
 
