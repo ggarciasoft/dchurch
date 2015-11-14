@@ -1,0 +1,23 @@
+<button id="btnAddMovement"
+        class="btn btn-primary">
+  A&#241;adir Movimiento <span class="glyphicon glyphicon-plus-sign"></span></button>
+<br>
+<br>
+<table id="tblMovements" class="table table-striped table-bordered">
+  <thead>
+  <tr>
+    <th>Tipo de Movimiento</th>
+    <th>Tipo de Entidad</th>
+    <th>Entidad</th>
+    <th>Tipo de Activo</th>
+    <th>Cantidad</th>
+    <th>Comentario</th>
+    <th colspan="2">Acci&#243;n</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% movement.movementsdetails.each do |m| %>
+      <%= render partial: "detailrow", locals: {movementsdetails: m} %>
+  <% end %>
+  </tbody>
+</table>

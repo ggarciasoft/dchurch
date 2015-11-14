@@ -7,7 +7,7 @@
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
-        <%= form_for(@movementdetail, remote: true, class: 'form-inline') do |f| %>
+        <%= form_for(@movementdetail, remote: true) do |f| %>
             <%= f.hidden_field :Id, class: "Id" %>
             <div id="divMovementType" data-valuetype class="form-group">
               <label>Tipo de Movimiento</label>
@@ -37,6 +37,7 @@
               <label>Comentario</label>
               <%= f.text_area :Comment, class: 'form-control' %>
             </div>
+            <input type="submit" style="display:none;">
         <% end %>
       </div>
       <div class="modal-footer">

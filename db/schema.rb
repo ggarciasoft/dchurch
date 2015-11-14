@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113013635) do
+ActiveRecord::Schema.define(version: 20151114035607) do
 
   create_table "assets", primary_key: "Id", force: true do |t|
     t.string "Description", limit: 100
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20151113013635) do
     t.string "password_digest", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean "Active"
   end
 
   add_index "users", ["UserName"], name: "index_users_on_UserName", unique: true, using: :btree

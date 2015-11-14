@@ -69,40 +69,49 @@
         <%= f.hidden_field :PhotoPath %>
       </div>
     </div>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>Detalle Ministerios
+            </h3>
+          </div>
+          <div id="divMinisters" class="panel-body">
 
-    <div id="divMinisters">
-      <%= hidden_field_tag "hdnMinistries", @ministries.to_json %>
-      <%= hidden_field_tag "hdnPositions", @positions.to_json %>
-      <h1>Ministerios</h1>
+            <%= hidden_field_tag "hdnMinistries", @ministries.to_json %>
+            <%= hidden_field_tag "hdnPositions", @positions.to_json %>
 
-      <button id="btnAddMinisty"
-              class="btn btn-primary" onclick="addDetail(); return false;">
-        Añadir Ministerio <span class="glyphicon glyphicon-plus-sign"></span></button>
-      <br>
-      <br>
-      <table id="tblMinistries" class="table table-striped table-bordered">
-        <thead>
-        <tr>
-          <th>Ministerio</th>
-          <th>Cargo</th>
-
-          <th>Acción</th>
-        </tr>
-        </thead>
-        <tbody>
-        <%= f.fields_for :memberministrypositions do |detail| %>
-            <tr data-index="<%= countDetail %>">
-              <td><%= detail.select :ministry_id, @ministries %></td>
-              <td><%= detail.select :position_id, @positions %></td>
-              <td>
-                <button class="btn btn-danger" onclick="deleteDetail(this); return false;">Eliminar
-                  <span class="glyphicon glyphicon-remove-sign"></span></button>
-              </td>
-              <% countDetail = countDetail + 1 %>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
+            <button id="btnAddMinisty"
+                    class="btn btn-primary" onclick="addDetail(); return false;">
+              Añadir Ministerio <span class="glyphicon glyphicon-plus-sign"></span></button>
+            <br>
+            <br>
+            <table id="tblMinistries" class="table table-striped table-bordered">
+              <thead>
+              <tr>
+                <th>Ministerio</th>
+                <th>Cargo</th>
+                <th>Acción</th>
+              </tr>
+              </thead>
+              <tbody>
+              <%= f.fields_for :memberministrypositions do |detail| %>
+                  <tr data-index="<%= countDetail %>">
+                    <td><%= detail.select :ministry_id, @ministries %></td>
+                    <td><%= detail.select :position_id, @positions %></td>
+                    <td>
+                      <button class="btn btn-danger" onclick="deleteDetail(this); return false;">Eliminar
+                        <span class="glyphicon glyphicon-remove-sign"></span></button>
+                    </td>
+                    <% countDetail = countDetail + 1 %>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
     <%= render "layouts/formactions", path_to_list: members_path %>
 <% end %>

@@ -20,8 +20,10 @@ $(document).ready ->
     $("div[data-valuetype]").each(() ->
       drp = $(this).find("select")[0]
       $(this).find("input:hidden").val(drp.options[drp.selectedIndex].innerHTML)
+      $("#modalMovementDetail form :submit").click()
       true
     )
+    false
   )
 
   $("#new_movementsdetail")

@@ -1,6 +1,12 @@
-<h1>Editar Ministerio</h1>
-
-<%= render "form"%>
-<%= link_to @ministry do %>
-    <button class="btn btn-info">Ver <span class="glyphicon glyphicon-eye-open"></span></button>
-<% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>Ministerio: #<%= @ministry.Id %>
+      <%= link_to @ministry do %>
+          <button class="btn btn-info">Ver <span class="glyphicon glyphicon-eye-open"></span></button>
+      <% end %>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <%= render 'form' %>
+  </div>
+</div>

@@ -4,7 +4,6 @@
     <% if @movement.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@movement.errors.count, "error") %> prohibited this movement from being saved:</h2>
-
           <ul>
             <% @movement.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
@@ -13,42 +12,29 @@
         </div>
     <% end %>
     <p id="notice"><%= notice %></p>
-    <div class="form-inline">
+    <div class="col-md-6">
       <div class="form-group">
         <label>Fecha de Movimiento</label>
         <%= f.date_field :MovementDate, required: "required", class: 'form-control' %>
-    </div>
+      </div>
       <div class="form-group">
         <label>Comentarios</label>
         <%= f.text_area :Comments, class: 'form-control' %>
+      </div>
     </div>
-    </div>
-    <div id="divMovements">
-      <h1>Detalle Movimientos</h1>
-
-      <button id="btnAddMovement"
-              class="btn btn-primary">
-        Añadir Movimiento <span class="glyphicon glyphicon-plus-sign"></span></button>
-
-      <table id="tblMovements" class="table table-striped table-bordered">
-        <thead>
-        <tr>
-          <th>Tipo de Movimiento</th>
-          <th>Tipo de Entidad</th>
-          <th>Entidad</th>
-          <th>Tipo de Activo</th>
-          <th>Cantidad</th>
-          <th>Comentario</th>
-          <th colspan="2">Acción</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% @movement.movementsdetails.each do |m| %>
-            <%= render partial: "detailrow", locals: {movementsdetails: m} %>
-        <% end %>
-        </tbody>
-      </table>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>Detalle Movimientos
+            </h3>
+          </div>
+          <div id="divMovements" class="panel-body">
+            <%= render partial: "movementdetail", locals: {movement: @movement} %>
+          </div>
+        </div>
+      </div>
     </div>
     <%= render "layouts/formactions", path_to_list: movements_path %>
 <% end %>
-  <%= render partial: "movementdetailpopup" %>
+<%= render partial: "movementdetailpopup" %>

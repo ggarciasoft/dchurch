@@ -1,22 +1,24 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-heading"><h3>Cargo: #<%= @position.Id %></h3></div>
+  <div class="panel-body">
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Id:</strong>
-  <%= @position.Id %>
-</p>
+    <div class="form-group">
+      <label>Descripci&#243;n:</label>
+      <%= @position.Description %>
+    </div>
+    <div class="form-group">
+      <div class="checkbox">
+        <label>
+          <%= check_box_tag "chkActive", nil, @position.Active, disabled: true %>Activo</label>
+      </div>
+    </div>
 
-<p>
-  <strong>Descripción:</strong>
-  <%= @position.Description %>
-</p>
-
-<p>
-  <strong>Activo:</strong>
-  <%= check_box_tag "chkActive", nil, @position.Active, disabled: true %>
-</p>
-<%= link_to edit_position_path(@position) do %>
-    <button class="btn btn-success">Editar <span class="glyphicon glyphicon-pencil"></span></button>
-<% end %> |
-<%= link_to positions_path do %>
-    <button class="btn btn-default">Lista <span class="glyphicon glyphicon-list"></span></button>
-<% end %>
+    <%= link_to edit_position_path(@position) do %>
+        <button class="btn btn-success">Editar <span class="glyphicon glyphicon-pencil"></span></button>
+    <% end %> |
+    <%= link_to ministries_path do %>
+        <button class="btn btn-default">Lista <span class="glyphicon glyphicon-list"></span></button>
+    <% end %>
+  </div>
+</div>
