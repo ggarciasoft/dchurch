@@ -5,9 +5,14 @@ class ApplicationController < ActionController::Base
 
   def members
     respond_to do |format|
-      @members = Member.where("firstname LIKE '%#{params[:term]}%' OR lastname LIKE '%#{params[:term]}%'")
+      @members = Member.where("firstname LIKE '%#{param_term()}%' OR lastname LIKE '%#{param_term()}%'")
                      .map { |x| {label: "#{x.FirstName} #{x.LastName}", value: "#{x.FirstName} #{x.LastName}"} }
       format.json { render json: @members }
     end
+  end
+
+  private
+  def param_term
+    params[:term]
   end
 end

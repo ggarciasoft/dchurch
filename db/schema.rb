@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151114035607) do
+ActiveRecord::Schema.define(version: 20151115233204) do
 
   create_table "assets", primary_key: "Id", force: true do |t|
     t.string "Description", limit: 100
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20151114035607) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", primary_key: "Id", force: true do |t|
     t.string "UserName", limit: 12, null: false
     t.string "FullName", limit: 150, null: false
     t.string "Email", limit: 150

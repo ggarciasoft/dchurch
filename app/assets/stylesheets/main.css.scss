@@ -1,6 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+html, body {
+  height: 100%;
+}
+
 .destroyfield {
   display: none;
 }
@@ -16,4 +20,37 @@ table.paddingright20 td {
 
 input[readonly], textarea[readonly] {
   background-color: rgb(235, 235, 228);
+}
+
+.field_with_errors {
+  width: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -60px;
+}
+
+#footer {
+  background-color: #f5f5f5;
+}
+
+#push, #footer {
+  height: 60px;
+}
+
+.credit {
+  margin: 20px 0;
+}
+
+.credit {
+  p {
+    color: #999999;
+  }
+  a {
+    color: #0088cc !important;
+    text-decoration: none;
+  }
 }

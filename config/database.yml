@@ -15,6 +15,7 @@ development:
   database: dchurch
   host: 127.0.0.1
   port: 3306
+  username: root
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -25,7 +26,13 @@ test:
   database: dchurch_test
   host: 127.0.0.1
   port: 3306
+  username: root
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  database: DChurch
+  host: diconosoft.chqouop01jxi.us-west-2.rds.amazonaws.com
+  port: 3306
+  username: Diconosoft
+  password: gregori123
