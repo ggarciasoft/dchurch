@@ -1,0 +1,13 @@
+<% if !errordata.nil? %>
+    <div class="alert-danger padding20">
+      <% if errordata.is_a? Array %>
+          <ul>
+            <% errordata.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+      <% else %>
+          <%= errordata %>
+      <% end %>
+    </div>
+<% end %>

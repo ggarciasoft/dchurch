@@ -27,7 +27,13 @@ $(document).on('ready page:load', function (e) {
  }).ajaxStop(function(){
  alert("stop");
  });*/
+/*
+ function linkHeaderMenuClick(){
+ $("#divHeaderMenu a[href^=#]").click(function(){
 
+ });
+ }
+ */
 function saveAndNewClick() {
     document.getElementById("hdnAdditionalAction").value = "saveandnew";
 }

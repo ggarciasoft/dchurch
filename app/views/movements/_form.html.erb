@@ -2,14 +2,7 @@
 <%= form_for(@movement) do |f| %>
     <% countDetail = 0 %>
     <% if @movement.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@movement.errors.count, "error") %> prohibited this movement from being saved:</h2>
-          <ul>
-            <% @movement.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
+        <%= render partial: "layouts/erroralert", locals: {errordata: @movement.errors.full_messages} %>
     <% end %>
     <p id="notice"><%= notice %></p>
     <div class="col-md-6">

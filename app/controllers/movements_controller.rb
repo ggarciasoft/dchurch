@@ -1,6 +1,7 @@
 class MovementsController < ApplicationController
   before_action :set_movement, only: [:show, :edit, :update, :destroy]
   before_action :set_dropdown_data, only: [:edit, :new]
+  before_action :set_movement_detail, only: [:new, :create, :edit, :update]
 
   # GET /movements
   # GET /movements.json
@@ -16,15 +17,10 @@ class MovementsController < ApplicationController
   # GET /movements/new
   def new
     @movement = Movement.new
-    #2.times { @movement.movementsdetails.build }
-    #@movement.movementsdetails[0].Id = 1
-    #@movement.movementsdetails[1].Id = 2
-    @movementdetail = Movementsdetail.new
   end
 
   # GET /movements/1/edit
   def edit
-    @movementdetail = Movementsdetail.new
   end
 
   # POST /movements
@@ -40,6 +36,7 @@ class MovementsController < ApplicationController
           format.html { redirect_to @movement, notice: 'Movimiento creado.' }
         end
       else
+        set_dropdown_data
         format.html { render :new }
         format.json { render json: @movement.errors, status: :unprocessable_entity }
       end
@@ -81,6 +78,10 @@ class MovementsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_movement
     @movement = Movement.find(params[:id])
+  end
+
+  def set_movement_detail
+    @movementdetail = Movementsdetail.new
   end
 
   def set_dropdown_data

@@ -3,31 +3,53 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="/">DCHURCH</a>
     </div>
-    <div>
+    <div id="divHeaderMenu">
       <ul class="nav navbar-nav">
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                role="button" aria-haspopup="true" aria-expanded="false">Mantenimientos
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li class="<%= "active" if controller.controller_name == "members" %>"><a href="/members">Miembros</a></li>
-            <li class="<%= "active" if controller.controller_name == "ministries" %>">
-              <a href="/ministries">Ministerios</a>
+        <% if logged_in? %>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                    role="button" aria-haspopup="true" aria-expanded="false">Mantenimientos
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="<%= "active" if controller.controller_name == "members" %>"><a href="/members">Miembros</a>
+                </li>
+                <li class="<%= "active" if controller.controller_name == "ministries" %>">
+                  <a href="/ministries">Ministerios</a>
+                </li>
+                <li class="<%= "active" if controller.controller_name == "positions" %>"><a href="/positions">Cargos</a>
+                </li>
+              </ul>
             </li>
-            <li class="<%= "active" if controller.controller_name == "positions" %>"><a href="/positions">Cargos</a>
+            <li class="<%= "active" if controller.controller_name == "movements" %>">
+              <a href="/movements">Movimientos</a>
             </li>
-          </ul>
-        </li>
-        <li class="<%= "active" if controller.controller_name == "movements" %>">
-          <a href="/movements">Movimientos</a>
-        </li>
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                role="button" aria-haspopup="true" aria-expanded="false">Seguridad
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li class="<%= "active" if controller.controller_name == "users" %>"><a href="/users">Usuarios</a>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                 role="button" aria-haspopup="true" aria-expanded="false">Seguridad
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="<%= "active" if controller.controller_name == "users" %>"><a href="/users">Usuarios</a>
+                </li>
+              </ul>
             </li>
-          </ul>
-        </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                 role="button" aria-haspopup="true" aria-expanded="false">Cuenta
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/users">Cambiar Contraseña</a>
+                </li>
+                <li class="divider"></li>
+                <li>  <%= link_to logout_path, method: "delete" do %>
+                      Salir <span class="glyphicon glyphicon-log-out"></span>
+                  <% end %>
+                </li>
+              </ul>
+            </li>
+        <% else %>
+            <li>
+              <a href="/login"> <span class="glyphicon glyphicon-log-in"></span> Ingresar</a>
+            </li>
+        <% end %>
       </ul>
     </div>
   </div>

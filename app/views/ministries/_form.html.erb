@@ -1,15 +1,7 @@
 <div class="col-md-6">
   <%= form_for (@ministry) do |f| %>
       <% if @ministry.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@ministry.errors.count, "error") %> prohibited this movement from being saved:</h2>
-
-            <ul>
-              <% @ministry.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
+          <%= render partial: "layouts/erroralert", locals: {errordata: @ministry.errors.full_messages} %>
       <% end %>
       <p id="notice"><%= notice %></p>
 

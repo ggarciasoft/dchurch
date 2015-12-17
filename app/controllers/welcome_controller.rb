@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
+  skip_before_filter :validate_security_action, :only => [:index]
   def index
-  	@test = "Hola"
   end
 end

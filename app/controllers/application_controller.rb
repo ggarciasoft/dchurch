@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  before_action :validate_security_action
   protect_from_forgery with: :exception
+  include SessionsHelper
 
   def members
     respond_to do |format|
@@ -14,5 +16,12 @@ class ApplicationController < ActionController::Base
   private
   def param_term
     params[:term]
+  end
+
+  def validate_security_action
+    unless logged_in?
+      flash[:danger] = 'Por favor, para accesar a esta pagina, debe ingresar primero al sistema.'
+      redirect_to login_path
+    end
   end
 end
