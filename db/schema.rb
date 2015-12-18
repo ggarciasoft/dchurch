@@ -11,13 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151115233204) do
+ActiveRecord::Schema.define(version: 20151218040925) do
 
   create_table "assets", primary_key: "Id", force: true do |t|
     t.string "Description", limit: 100
     t.boolean "Active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "created_userid"
+    t.integer "updated_userid"
+  end
+
+  create_table "entitymasters", force: true do |t|
+    t.string "FullName", limit: 150, null: false
+    t.string "Description", limit: 150, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "entitytypes", primary_key: "Id", force: true do |t|
@@ -25,6 +34,8 @@ ActiveRecord::Schema.define(version: 20151115233204) do
     t.boolean "Active", default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "created_userid"
+    t.integer "updated_userid"
   end
 
   create_table "memberministrypositions", primary_key: "Id", force: true do |t|
@@ -50,13 +61,20 @@ ActiveRecord::Schema.define(version: 20151115233204) do
     t.boolean "Active", default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "created_userid"
+    t.integer "updated_userid"
+    t.integer "entitymaster_id"
   end
+
+  add_index "members", ["entitymaster_id"], name: "FK_members_entitymaster", using: :btree
 
   create_table "ministries", primary_key: "Id", force: true do |t|
     t.string "Description", limit: 50, null: false
     t.boolean "Active", default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "created_userid"
+    t.integer "updated_userid"
   end
 
   create_table "movements", primary_key: "Id", force: true do |t|
@@ -64,7 +82,12 @@ ActiveRecord::Schema.define(version: 20151115233204) do
     t.string "Comments", limit: 500, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "created_userid"
+    t.integer "updated_userid"
+    t.integer "entitymaster_id"
   end
+
+  add_index "movements", ["entitymaster_id"], name: "FK_movements_entitymaster", using: :btree
 
   create_table "movementsdetails", id: false, force: true do |t|
     t.integer "Id", null: false
@@ -87,6 +110,8 @@ ActiveRecord::Schema.define(version: 20151115233204) do
     t.boolean "Active", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "created_userid"
+    t.integer "updated_userid"
   end
 
   create_table "positions", primary_key: "Id", force: true do |t|
@@ -94,6 +119,8 @@ ActiveRecord::Schema.define(version: 20151115233204) do
     t.boolean "Active", default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "created_userid"
+    t.integer "updated_userid"
   end
 
   create_table "users", primary_key: "Id", force: true do |t|
