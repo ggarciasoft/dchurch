@@ -3,20 +3,12 @@
   <%= form_for(@user) do |f| %>
       <% countDetail = 0 %>
       <% if @user.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this member from being saved:</h2>
-            <ul>
-              <% @user.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
+          <%= render partial: "layouts/erroralert", locals: {errordata: @user.errors.full_messages} %>
       <% end %>
-      <p id="notice"><%= notice %></p>
 
       <div class="form-group">
         <label>Usuario</label>
-        <%= f.text_field :UserName, class: 'form-control' %>
+        <%= f.text_field :UserName, required: "required", class: 'form-control' %>
       </div>
       <div class="form-group">
         <label>Contrase&#241;a</label>
@@ -28,7 +20,7 @@
       </div>
       <div class="form-group">
         <label>Nombre Completo</label>
-        <%= f.text_field :FullName, class: 'form-control' %>
+        <%= f.text_field :FullName, required: "required", class: 'form-control' %>
       </div>
       <div class="form-group">
         <label>Correo Electr&#243;nico</label>

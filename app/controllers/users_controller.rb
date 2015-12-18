@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user, notice: 'Usuario creado satisfactoriamente.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: 'Usuario editado satisfactoriamente.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -56,12 +56,33 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: 'Usuario eliminado satisfactoriamente.' }
       format.json { head :no_content }
     end
   end
 
+  def editpassword
+    @user = User.find(current_session_data.user_id)
+  end
+
+  def updatepassword
+    @user = User.find(current_session_data.user_id)
+    respond_to do |format|
+      if (params[:user][:id] != current_session_data.user_id.to_s)
+        format.html { redirect_to changepassword_path, notice: 'Error al intentar cambiar contraseña.' }
+      else
+        if @user.update(user_change_password_params)
+          format.html { redirect_to changepassword_path, notice: 'Contraseña cambiada satisfactoriamente.' }
+        else
+          format.html { render editpassword }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+  end
+
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
@@ -70,5 +91,10 @@ class UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user).permit(:Id, :UserName, :FullName, :Email, :Active, :password, :password_confirmation)
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_change_password_params
+    params.require(:user).permit(:Id, :password, :password_confirmation)
   end
 end

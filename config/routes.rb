@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   resources :positions
   resources :ministries
   resources :users
+  get '/changepassword' => 'users#editpassword'
+  post '/changepassword' => 'users#updatepassword'
+  patch '/changepassword' => 'users#updatepassword'
+
   resources :movements
   post '/movementsdetails/', :to => 'movements#savedetailrow', :as => :movementsdetails
   resources :members

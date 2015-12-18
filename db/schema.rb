@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151218040925) do
+ActiveRecord::Schema.define(version: 20151218211114) do
 
   create_table "assets", primary_key: "Id", force: true do |t|
     t.string "Description", limit: 100
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20151218040925) do
     t.datetime "updated_at", null: false
     t.integer "created_userid"
     t.integer "updated_userid"
+    t.boolean "isamount"
   end
 
   create_table "entitymasters", force: true do |t|
@@ -131,6 +132,7 @@ ActiveRecord::Schema.define(version: 20151218040925) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean "Active"
+    t.integer "entitymaster_id"
   end
 
   add_index "users", ["UserName"], name: "index_users_on_UserName", unique: true, using: :btree

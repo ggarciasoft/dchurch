@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_session_data
+    current_user
+  end
+
   private
   def param_term
     params[:term]
