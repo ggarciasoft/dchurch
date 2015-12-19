@@ -3,22 +3,19 @@ module SessionsHelper
     sessionData = SessionData.new
     sessionData.user_id = user.id
     sessionData.entitymaster_id = user.entitymaster_id
-    session[:SessionData] = sessionData
-    session[:user_id] = user.id
-    session[:entitymaster_id] = user.entitymaster_id
+    session[:SessionData] = sessionData.to_json
   end
 
   def current_user
     sessionData = SessionData.new
-    sessionData.user_id = session[:user_id]
-    sessionData.entitymaster_id = session[:entitymaster_id]
+    sessionDataHash = JSON.parse(session[:SessionData])
+    sessionData.user_id = sessionDataHash.user_id
+    sessionData.entitymaster_id = sessionDataHash.entitymaster_id
     @current_user ||= sessionData
   end
 
   def log_out
     session.delete(:SessionData)
-    session.delete(:user_id)
-    session.delete(:entitymaster_id)
     @current_user = nil
   end
 
