@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'Usuario creado satisfactoriamente.' }
+        format.html { redirect_to @user, notice: 'Registro guardado satisfactoriamente.' }
         format.json { render :show, status: :created, location: @user }
       else
         set_dropdown_data
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'Usuario editado satisfactoriamente.' }
+        format.html { redirect_to @user, notice: 'Registro guardado satisfactoriamente.' }
         format.json { render :show, status: :ok, location: @user }
       else
         set_dropdown_data
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'Usuario eliminado satisfactoriamente.' }
+      format.html { redirect_to users_url, notice: 'Registro eliminado satisfactoriamente.' }
       format.json { head :no_content }
     end
   end

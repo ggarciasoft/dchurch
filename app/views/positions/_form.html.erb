@@ -2,7 +2,6 @@
     <% if @position.errors.any? %>
         <%= render partial: "layouts/erroralert", locals: {errordata: @position.errors.full_messages} %>
     <% end %>
-    <p id="notice"><%= notice %></p>
 
     <div class="field">
       <%= f.label :Description %><br>

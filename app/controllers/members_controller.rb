@@ -43,9 +43,9 @@ class MembersController < ApplicationController
           end
         end
         if params[:additionalAction] == 'saveandnew'
-          format.html { redirect_to ({action: 'new', id: @member.id}), notice: 'Miembro creado.' }
+          format.html { redirect_to ({action: 'new', id: @member.id}), notice: 'Registro guardado satisfactoriamente.' }
         else
-          format.html { redirect_to @member, notice: 'Miembro creado.' }
+          format.html { redirect_to @member, notice: 'Registro guardado satisfactoriamente.' }
         end
       else
         set_detail_data
@@ -72,9 +72,9 @@ class MembersController < ApplicationController
           end
         end
         if params[:additionalAction] == 'saveandnew'
-          format.html { redirect_to ({action: 'new', id: @member.id}), notice: 'Miembro actualizado.' }
+          format.html { redirect_to ({action: 'new', id: @member.id}), notice: 'Registro guardado satisfactoriamente.' }
         else
-          format.html { redirect_to @member, notice: 'Miembro actualizado.' }
+          format.html { redirect_to @member, notice: 'Registro guardado satisfactoriamente.' }
         end
       else
         set_detail_data
@@ -92,7 +92,7 @@ class MembersController < ApplicationController
       File.delete(@member.PhotoPaths)
     end
     respond_to do |format|
-      format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
+      format.html { redirect_to members_url, notice: 'Registro eliminado satisfactoriamente.' }
       format.json { head :no_content }
     end
   end

@@ -15,9 +15,9 @@ class MinistriesController < ApplicationController
 		respond_to do |format|
 			if @ministry.save
 			if params[:additionalAction] == "saveandnew"
-				format.html { redirect_to ({action: "new", id: @ministry.id}), notice: 'Ministerio Creado.' }
+				format.html { redirect_to ({action: "new", id: @ministry.id}), notice: 'Registro guardado satisfactoriamente.' }
 			else
-				format.html {redirect_to ministries_url, notice: "Ministerio Creado." }
+				format.html { redirect_to ministries_url, notice: "Registro guardado satisfactoriamente." }
 			end
 			else
 				format.html {render :new}
@@ -36,9 +36,9 @@ class MinistriesController < ApplicationController
 			if 
 				@ministry.update(ministry_params)
 				if params[:additionalAction] == "saveandnew"
-					format.html { redirect_to ({action: "new", id: @ministry.id}), notice: 'Ministerio Actualizado.' }
+					format.html { redirect_to ({action: "new", id: @ministry.id}), notice: 'Registro guardado satisfactoriamente.' }
 				else
-					format.html {redirect_to ministries_url, notice: "Ministerio Actualizado." }
+					format.html { redirect_to ministries_url, notice: "Registro guardado satisfactoriamente." }
 				end
 			else
 				format.html {render :edit}
@@ -48,7 +48,7 @@ class MinistriesController < ApplicationController
 
 	def destroy
 		@ministry.destroy
-		format.html {redirect_to ministries_url , notice: "Ministerio Eliminado." }
+		format.html { redirect_to ministries_url, notice: "Registro eliminado satisfactoriamente." }
 	end
 
 	def set_ministry

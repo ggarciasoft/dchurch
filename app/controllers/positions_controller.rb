@@ -34,9 +34,9 @@ class PositionsController < ApplicationController
     respond_to do |format|
       if @position.save
         if params[:additionalAction] == "saveandnew"
-          format.html { redirect_to ({action: "new", id: @position.id}), notice: 'Position was successfully created.' }
+          format.html { redirect_to ({action: "new", id: @position.id}), notice: 'Registro guardado satisfactoriamente.' }
         else
-          format.html { redirect_to @position, notice: 'Position was successfully created.' }
+          format.html { redirect_to @position, notice: 'Registro guardado satisfactoriamente.' }
         end
       else
         format.html { render :new }
@@ -50,9 +50,9 @@ class PositionsController < ApplicationController
     respond_to do |format|
       if @position.update(position_params)
         if params[:additionalAction] == "saveandnew"
-          format.html { redirect_to ({action: "new", id: @position.id}), notice: 'Position was successfully updated.' }
+          format.html { redirect_to ({action: "new", id: @position.id}), notice: 'Registro guardado satisfactoriamente.' }
         else
-          format.html { redirect_to @position, notice: 'Position was successfully updated.' }
+          format.html { redirect_to @position, notice: 'Registro guardado satisfactoriamente.' }
         end
       else
         format.html { render :edit }
@@ -65,7 +65,7 @@ class PositionsController < ApplicationController
   def destroy
     @position.destroy
     respond_to do |format|
-      format.html { redirect_to positions_url, notice: 'Position was successfully destroyed.' }
+      format.html { redirect_to positions_url, notice: 'Registro eliminado satisfactoriamente.' }
       format.json { head :no_content }
     end
   end

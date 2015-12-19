@@ -31,9 +31,9 @@ class MovementsController < ApplicationController
     respond_to do |format|
       if @movement.save
         if params[:additionalAction] == "saveandnew"
-          format.html { render :new, notice: 'Movimiento creado.' }
+          format.html { render :new, notice: 'Registro guardado satisfactoriamente.' }
         else
-          format.html { redirect_to @movement, notice: 'Movimiento creado.' }
+          format.html { redirect_to @movement, notice: 'Registro guardado satisfactoriamente.' }
         end
       else
         set_dropdown_data
@@ -49,9 +49,9 @@ class MovementsController < ApplicationController
     respond_to do |format|
       if @movement.update(movement_params)
         if params[:additionalAction] == "saveandnew"
-          format.html { render :new, notice: 'Movimiento actualizado.' }
+          format.html { render :new, notice: 'Registro guardado satisfactoriamente.' }
         else
-          format.html { redirect_to @movement, notice: 'Movimiento actualizado.' }
+          format.html { redirect_to @movement, notice: 'Registro guardado satisfactoriamente.' }
         end
       else
         set_dropdown_data
@@ -65,7 +65,7 @@ class MovementsController < ApplicationController
   def destroy
     @movement.destroy
     respond_to do |format|
-      format.html { redirect_to movements_url, notice: 'Movement was successfully destroyed.' }
+      format.html { redirect_to movements_url, notice: 'Registro eliminado satisfactoriamente.' }
       format.json { head :no_content }
     end
   end

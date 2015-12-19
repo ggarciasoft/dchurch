@@ -4,7 +4,6 @@
     <% if @movement.errors.any? %>
         <%= render partial: "layouts/erroralert", locals: {errordata: @movement.errors.full_messages} %>
     <% end %>
-    <p id="notice"><%= notice %></p>
     <div class="col-md-6">
       <div class="form-group">
         <label>Fecha de Movimiento</label>

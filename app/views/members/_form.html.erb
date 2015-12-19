@@ -4,7 +4,6 @@
     <% if @member.errors.any? %>
         <%= render partial: "layouts/erroralert", locals: {errordata: @member.errors.full_messages} %>
     <% end %>
-    <p id="notice"><%= notice %></p>
 
     <div class="row">
       <div class="col-md-4">

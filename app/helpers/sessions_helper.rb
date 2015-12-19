@@ -1,4 +1,6 @@
 module SessionsHelper
+  @@Session
+
   def log_in(user)
     sessionData = SessionData.new
     sessionData.user_id = user.id
@@ -9,8 +11,16 @@ module SessionsHelper
   def current_user
     sessionData = SessionData.new
     sessionDataHash = JSON.parse(session[:SessionData])
-    sessionData.user_id = sessionDataHash.user_id
-    sessionData.entitymaster_id = sessionDataHash.entitymaster_id
+    sessionData.user_id = sessionDataHash["user_id"]
+    sessionData.entitymaster_id = sessionDataHash["entitymaster_id"]
+    @current_user ||= sessionData
+  end
+
+  def self.current_user
+    sessionData = SessionData.new
+    sessionDataHash = JSON.parse(SessionData.session[:SessionData])
+    sessionData.user_id = sessionDataHash["user_id"]
+    sessionData.entitymaster_id = sessionDataHash["entitymaster_id"]
     @current_user ||= sessionData
   end
 

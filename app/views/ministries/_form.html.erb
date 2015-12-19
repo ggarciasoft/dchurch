@@ -3,7 +3,6 @@
       <% if @ministry.errors.any? %>
           <%= render partial: "layouts/erroralert", locals: {errordata: @ministry.errors.full_messages} %>
       <% end %>
-      <p id="notice"><%= notice %></p>
 
       <div class="form-group">
         <label>Descripci&#243;n</label>
