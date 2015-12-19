@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_dropdown_data, only: [:edit, :new]
 
   # GET /users
   # GET /users.json
@@ -31,6 +32,7 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'Usuario creado satisfactoriamente.' }
         format.json { render :show, status: :created, location: @user }
       else
+        set_dropdown_data
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -45,6 +47,7 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'Usuario editado satisfactoriamente.' }
         format.json { render :show, status: :ok, location: @user }
       else
+        set_dropdown_data
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -88,9 +91,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def set_dropdown_data
+    @entitiesmasters = Entitymaster.all.collect { |m| [m.Description, m.id] }
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:Id, :UserName, :FullName, :Email, :Active, :password, :password_confirmation)
+    params.require(:user).permit(:Id, :UserName, :FullName, :Email, :Active, :password, :password_confirmation, :entitymaster_id)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

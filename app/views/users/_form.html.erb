@@ -27,6 +27,10 @@
         <%= f.email_field :Email, class: 'form-control' %>
       </div>
       <div class="form-group">
+        <label>Entidad Correspondiente</label>
+        <%= f.select :entitymaster_id, @entitiesmasters, {include_blank: true}, required: "required", class: 'form-control' %>
+      </div>
+      <div class="form-group">
         <div class="checkbox">
           <label>
             <%= f.check_box :Active %>Activo</label>
