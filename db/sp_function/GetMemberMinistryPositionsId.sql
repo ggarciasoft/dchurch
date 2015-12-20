@@ -1,0 +1,15 @@
+CREATE DEFINER=`root`@`localhost` FUNCTION `GetMemberMinistryPositionsId`()
+	RETURNS int(11)
+	LANGUAGE SQL
+	NOT DETERMINISTIC
+	CONTAINS SQL
+	SQL SECURITY DEFINER
+	COMMENT ''
+BEGIN
+DECLARE Id INT unsigned DEFAULT 1;
+WHILE 1 = 1 DO
+IF (SELECT COUNT(*) FROM memberministrypositions m  WHERE m.Id = Id) = 0 THEN RETURN Id;
+ELSE SET Id = Id + 1;
+END IF;
+END WHILE;
+END
