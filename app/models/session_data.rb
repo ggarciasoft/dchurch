@@ -1,11 +1,11 @@
 class SessionData
-  attr_accessor :user_id, :entitymaster_id
+  ROLES_ADMIN = 1
 
-  def self.set_session(session)
-    @@Session = session
-  end
+  attr_accessor :id, :entitymaster_id, :role_id
 
-  def self.session
-    @@Session
+  def initialize(sessionHash)
+    self.id = sessionHash["id"]
+    self.entitymaster_id = sessionHash["entitymaster_id"]
+    self.role_id = sessionHash["role_id"]
   end
 end

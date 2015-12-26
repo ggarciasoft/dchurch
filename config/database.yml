@@ -28,11 +28,11 @@ test:
   port: 3306
   username: root
 
-production:
-  adapter: mysql2
-  encoding: utf8
-  database: DChurch
-  host: diconosoft.chqouop01jxi.us-west-2.rds.amazonaws.com
-  port: 3306
-  username: Diconosoft
-  password: gregori123
+#production:
+#  #adapter: mysql2
+#  encoding: utf8
+#  database: DChurch
+#  host: diconosoft.chqouop01jxi.us-west-2.rds.amazonaws.com
+#  port: 3306
+#  username: Diconosoft
+#  password: gregori123

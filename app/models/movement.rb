@@ -4,6 +4,10 @@ class Movement < ActiveRecord::Base
   validates :MovementDate, presence: true
   validates :Comments, length: {maximum: 500}
 
+  def self.default_scope
+    where("entitymaster_id = ?", SessionsHelper.current_user.entitymaster_id) if SessionsHelper.current_user.role_id != SessionData::ROLES_ADMIN
+  end
+
   after_validation(on: :update) do
     Movementsdetail.delete_all(:Movement_id => id)
   end

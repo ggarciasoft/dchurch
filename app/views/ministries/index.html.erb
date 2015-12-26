@@ -1,7 +1,9 @@
 <div class="panel panel-default">
   <div class="panel-heading"><h3>Lista de Ministerios</h3></div>
   <div class="panel-body">
-    <div class="alert-success padding20"><%= notice %></div>
+    <% if (!notice.nil?) %>
+        <div class="alert-success padding20"><%= notice %></div>
+    <% end %>
     <%= link_to new_ministry_path do %>
         <button class="btn btn-primary">Nuevo <span class="glyphicon glyphicon-plus-sign"></span></button>
     <% end %>

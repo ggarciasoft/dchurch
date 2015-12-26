@@ -6,16 +6,24 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
-  def members
+  def get_entity_reference
     respond_to do |format|
-      @members = Member.where("firstname LIKE '%#{param_term()}%' OR lastname LIKE '%#{param_term()}%'")
-                     .map { |x| {label: "#{x.FirstName} #{x.LastName}", value: "#{x.FirstName} #{x.LastName}"} }
-      format.json { render json: @members }
+      term = params[:term]
+      source = params[:source]
+      entity_references = "";
+      if (source == "Member")
+        entity_references = Member.where("firstname LIKE '%#{term}%' OR lastname LIKE '%#{term}%'")
+                                .collect { |x| {label: "#{x.FirstName} #{x.LastName}", value: "#{x.FirstName} #{x.LastName}"} }
+      elsif (source == "ConfigurationCode")
+        entity_references = ConfigurationCode.where("firstname LIKE '%#{term}%' OR lastname LIKE '%#{term}%'")
+                                .collect { |x| {label: "#{x.FirstName} #{x.LastName}", value: "#{x.FirstName} #{x.LastName}"} }
+      end
+      format.json { render json: entity_references }
     end
   end
 
   def set_global_session
-    SessionData.set_session(session)
+    SessionsHelper.set_session(session)
   end
 
   def current_session_data
@@ -23,9 +31,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  def param_term
-    params[:term]
-  end
 
   def validate_security_action
     unless logged_in?

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151220003206) do
+ActiveRecord::Schema.define(version: 20151226021939) do
 
   create_table "assets", primary_key: "Id", force: true do |t|
     t.string "Description", limit: 100
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20151220003206) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "configurationcode_id"
+    t.boolean "active"
   end
 
   add_index "configuration_code_details", ["configurationcode_id"], name: "index_configuration_code_details_on_configurationcode_id", using: :btree
@@ -37,6 +38,7 @@ ActiveRecord::Schema.define(version: 20151220003206) do
     t.string "description", limit: 150
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean "active"
   end
 
   create_table "entitymasters", force: true do |t|
@@ -53,6 +55,7 @@ ActiveRecord::Schema.define(version: 20151220003206) do
     t.datetime "updated_at"
     t.integer "created_userid"
     t.integer "updated_userid"
+    t.string "entitysource", limit: 150
   end
 
   create_table "memberministrypositions", primary_key: "Id", force: true do |t|
@@ -140,7 +143,14 @@ ActiveRecord::Schema.define(version: 20151220003206) do
     t.integer "updated_userid"
   end
 
-  create_table "users", primary_key: "Id", force: true do |t|
+  create_table "roles", force: true do |t|
+    t.string "description", limit: 150, null: false
+    t.boolean "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
     t.string "UserName", limit: 12, null: false
     t.string "FullName", limit: 150, null: false
     t.string "Email", limit: 150
@@ -149,8 +159,10 @@ ActiveRecord::Schema.define(version: 20151220003206) do
     t.datetime "updated_at"
     t.boolean "Active"
     t.integer "entitymaster_id"
+    t.integer "role_id"
   end
 
   add_index "users", ["UserName"], name: "index_users_on_UserName", unique: true, using: :btree
+  add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
 end

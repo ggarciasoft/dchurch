@@ -86,7 +86,7 @@ class MovementsController < ApplicationController
 
   def set_dropdown_data
     @assets = Asset.all.collect { |m| [m.Description, m.Id] }
-    @entitytypes = Entitytype.all.collect { |m| [m.Description, m.Id] }
+    @entitytypes = Entitytype.all.collect { |m| [m.Description, m.Id, {'data-source' => m.entitysource}] }
     @movementtypes = Movementtype.all.collect { |m| [m.Description, m.Id] }
   end
 

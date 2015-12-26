@@ -65,13 +65,13 @@ class UsersController < ApplicationController
   end
 
   def editpassword
-    @user = User.find(current_session_data.user_id)
+    @user = User.find(current_session_data.id)
   end
 
   def updatepassword
-    @user = User.find(current_session_data.user_id)
+    @user = User.find(current_session_data.id)
     respond_to do |format|
-      if (params[:user][:id] != current_session_data.user_id.to_s)
+      if (params[:user][:id] != current_session_data.id.to_s)
         format.html { redirect_to changepassword_path, notice: 'Error al intentar cambiar contraseña.' }
       else
         if @user.update(user_change_password_params)
@@ -97,11 +97,11 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:Id, :UserName, :FullName, :Email, :Active, :password, :password_confirmation, :entitymaster_id)
+    params.require(:user).permit(:id, :UserName, :FullName, :Email, :Active, :password, :password_confirmation, :entitymaster_id)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_change_password_params
-    params.require(:user).permit(:Id, :password, :password_confirmation)
+    params.require(:user).permit(:id, :password, :password_confirmation)
   end
 end

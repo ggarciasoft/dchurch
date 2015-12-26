@@ -1,27 +1,20 @@
 module SessionsHelper
-  @@Session
-
+  @@session
   def log_in(user)
-    sessionData = SessionData.new
-    sessionData.user_id = user.id
-    sessionData.entitymaster_id = user.entitymaster_id
+    sessionData = SessionData.new(user.as_json)
     session[:SessionData] = sessionData.to_json
   end
 
   def current_user
-    sessionData = SessionData.new
     sessionDataHash = JSON.parse(session[:SessionData])
-    sessionData.user_id = sessionDataHash["user_id"]
-    sessionData.entitymaster_id = sessionDataHash["entitymaster_id"]
+    sessionData = SessionData.new(sessionDataHash)
     @current_user ||= sessionData
   end
 
   def self.current_user
-    sessionData = SessionData.new
-    sessionDataHash = JSON.parse(SessionData.session[:SessionData])
-    sessionData.user_id = sessionDataHash["user_id"]
-    sessionData.entitymaster_id = sessionDataHash["entitymaster_id"]
-    @current_user ||= sessionData
+    sessionDataHash = JSON.parse(@@Session[:SessionData])
+    sessionData = SessionData.new(sessionDataHash)
+    sessionData
   end
 
   def log_out
@@ -31,5 +24,9 @@ module SessionsHelper
 
   def logged_in?
     !session[:SessionData].nil?
+  end
+
+  def self.set_session(session)
+    @@Session = session
   end
 end

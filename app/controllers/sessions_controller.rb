@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_filter :validate_security_action, :only => [:new, :create]
+  skip_before_filter :set_global_session, :only => [:new, :create]
 
   def new
   end

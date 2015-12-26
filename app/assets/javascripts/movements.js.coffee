@@ -42,10 +42,14 @@ $(document).ready ->
 
   $("#divEntityType select").change(() ->
     entityReference = $("#divEntityReference input")
-    if(this.value == "1")
+    source = this.getAttribute("data-source");
+    if(source != "nil")
+      entityType = this.text;
       entityReference.autocomplete({
-        source: "/jmembers.json",
-        minLength: 2
+        source: (request, response) -> $.getJSON("/getEntityReference.json",
+          {term: request.term, source: source, entityType: entityType},
+          response),
+        minLength: 3
       })
     else if(entityReference.hasClass("ui-autocomplete-input"))
       entityReference.autocomplete("destroy").removeData("autocomplete")
