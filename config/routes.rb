@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   post '/movementsdetails/', :to => 'movements#savedetailrow', :as => :movementsdetails
   resources :members
   post 'members/savePhoto'
-  get '/jmembers', :to => 'application#members'
+  get '/getEntityReference', :to => 'application#get_entity_reference'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

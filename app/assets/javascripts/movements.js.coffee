@@ -41,18 +41,21 @@ $(document).ready ->
   )
 
   $("#divEntityType select").change(() ->
-    entityReference = $("#divEntityReference input")
-    source = this.getAttribute("data-source");
+    txtEntityReference = $("#divEntityReference input")
+    hdnEntityReferenceId = $("#divEntityReference hidden")
+    hdnEntityReferenceId.val("")
+    source = this.getAttribute("data-source")
     if(source != "nil")
       entityType = this.text;
-      entityReference.autocomplete({
+      txtEntityReference.autocomplete({
         source: (request, response) -> $.getJSON("/getEntityReference.json",
           {term: request.term, source: source, entityType: entityType},
           response),
-        minLength: 3
+        minLength: 3,
+        select: () -> hdnEntityReferenceId.val(this.value)
       })
-    else if(entityReference.hasClass("ui-autocomplete-input"))
-      entityReference.autocomplete("destroy").removeData("autocomplete")
+    else if(txtEntityReference.hasClass("ui-autocomplete-input"))
+      txtEntityReference.autocomplete("destroy").removeData("autocomplete")
     true
   )
   true

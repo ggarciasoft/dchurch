@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151226021939) do
+ActiveRecord::Schema.define(version: 20160108020327) do
 
   create_table "assets", primary_key: "Id", force: true do |t|
     t.string "Description", limit: 100
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 20151226021939) do
     t.integer "asset_id", null: false
     t.integer "assetQuantity", null: false
     t.string "Comment", limit: 50
+    t.integer "entityReference_id"
   end
 
   add_index "movementsdetails", ["asset_id"], name: "FK_movementsdetail_assets", using: :btree

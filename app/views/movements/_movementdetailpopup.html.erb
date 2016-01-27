@@ -22,6 +22,7 @@
             <div id="divEntityReference" class="form-group">
               <label>Entidad</label>
               <%= f.text_field :entityReference, required: "required", class: 'form-control' %>
+              <%= f.hidden_field :entityReference_id %>
             </div>
             <div id="divAsset" data-valuetype class="form-group">
               <label>Tipo de Activo</label>
@@ -41,7 +42,8 @@
         <% end %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar
+          <span class="glyphicon glyphicon-remove"></span></button>
         <button id="btnSaveMovement"
                 class="btn btn-success">
           Guardar Movimiento <span class="glyphicon glyphicon-floppy-disk"></span></button>
