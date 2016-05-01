@@ -10,13 +10,16 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       term = params[:term]
       source = params[:source]
+      entityType = params[:entityType]
       entity_references = "";
       if (source == "Member")
         entity_references = Member.where("firstname LIKE '%#{term}%' OR lastname LIKE '%#{term}%'")
-                                .collect { |x| {label: "#{x.FirstName} #{x.LastName}", value: "#{x.FirstName} #{x.LastName}"} }
+                                .collect { |x| {value: "#{x.FirstName} #{x.LastName}", id: "#{x.Id}"} }
       elsif (source == "ConfigurationCode")
-        entity_references = ConfigurationCode.where("firstname LIKE '%#{term}%' OR lastname LIKE '%#{term}%'")
-                                .collect { |x| {label: "#{x.FirstName} #{x.LastName}", value: "#{x.FirstName} #{x.LastName}"} }
+        entity_references = ConfigurationCodeDetail.joins(:configuration_code)
+                                .where("configuration_codes.description LIKE 'EntityType_#{entityType}'
+                                      AND configuration_code_details.description LIKE '%#{term}%'")
+                                .collect { |x| {value: "#{x.description}", id: "#{x.id}"} }
       end
       format.json { render json: entity_references }
     end

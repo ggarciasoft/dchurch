@@ -14,6 +14,8 @@ $(document).ready ->
     $("#myModalLabel").text("Nuevo Movimiento")
     $('#modalMovementDetail').modal('show')
     false
+  ).keypress(()->
+    $("#divEntityReference hidden").val("")
   )
 
   $("#btnSaveMovement").click(()->
@@ -41,18 +43,18 @@ $(document).ready ->
   )
 
   $("#divEntityType select").change(() ->
-    txtEntityReference = $("#divEntityReference input")
-    hdnEntityReferenceId = $("#divEntityReference hidden")
-    hdnEntityReferenceId.val("")
-    source = this.getAttribute("data-source")
+    txtEntityReference = $("#divEntityReference :text")
+    hdnEntityReferenceId = $("#divEntityReference :hidden")
+    txtEntityReference.text('')
+    source = this.selectedOptions[0].getAttribute("data-source")
     if(source != "nil")
-      entityType = this.text;
+      entityType = this.selectedOptions[0].text;
       txtEntityReference.autocomplete({
         source: (request, response) -> $.getJSON("/getEntityReference.json",
           {term: request.term, source: source, entityType: entityType},
           response),
         minLength: 3,
-        select: () -> hdnEntityReferenceId.val(this.value)
+        select: (event, val) -> hdnEntityReferenceId.val(val.item.id)
       })
     else if(txtEntityReference.hasClass("ui-autocomplete-input"))
       txtEntityReference.autocomplete("destroy").removeData("autocomplete")

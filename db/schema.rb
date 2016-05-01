@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160108020327) do
+ActiveRecord::Schema.define(version: 20160501052323) do
 
   create_table "assets", primary_key: "Id", force: true do |t|
     t.string "Description", limit: 100
@@ -28,11 +28,9 @@ ActiveRecord::Schema.define(version: 20160108020327) do
     t.string "configurationvalue", limit: 150
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "configurationcode_id"
+    t.integer "configuration_code_id"
     t.boolean "active"
   end
-
-  add_index "configuration_code_details", ["configurationcode_id"], name: "index_configuration_code_details_on_configurationcode_id", using: :btree
 
   create_table "configuration_codes", force: true do |t|
     t.string "description", limit: 150
